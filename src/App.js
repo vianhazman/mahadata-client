@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import DashboardLayout from "./layouts/DashboardLayout";
-import TopBar from "./components/TopBar";
+// import TopBar from "./components/TopBar";
 
 function App() {
   return (

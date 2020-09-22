@@ -1,4 +1,4 @@
-import { Index, TimeRange, TimeRangeEvent, TimeSeries } from "pondjs";
+import { TimeRange, TimeRangeEvent, TimeSeries } from "pondjs";
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 

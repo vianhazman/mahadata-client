@@ -23,7 +23,7 @@ const LayeredMap = ({
     if (!selectedRegion) {
       setInitialViewState(INITIAL_VIEW_STATE);
     }
-  });
+  }, [setInitialViewState, selectedRegion]);
 
   const goToPolygon = (coordinate, setInitialViewState) => {
     setInitialViewState({

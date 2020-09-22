@@ -1,5 +1,4 @@
 import Grid from "@material-ui/core/Grid";
-import Slider from "@material-ui/core/Slider";
 import styled from "styled-components";
 
 export const StyledContainer = styled(Grid)`

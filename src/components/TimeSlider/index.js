@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Button from "@material-ui/core/Button";
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 import PauseIcon from "@material-ui/icons/Pause";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import Slider from "@material-ui/core/Slider";
@@ -10,13 +10,13 @@ import { StyledContainer } from "./styled";
 const TimeSlider = ({ data, index, setIndex }) => {
   const [currentInterval, setCurrentInterval] = useState(0);
   const maxValue = data.length - 1;
-  
+
   useEffect(() => {
     if (index === maxValue) {
       clearInterval(currentInterval);
       setCurrentInterval(0);
     }
-  });
+  }, [setCurrentInterval, currentInterval, index, maxValue]);
 
   function onButtonClick() {
     if (currentInterval) {
