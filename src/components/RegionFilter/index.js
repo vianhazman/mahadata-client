@@ -1,12 +1,10 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
+import { makeStyles } from "@material-ui/core/styles";
+
 import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+
 import TextField from "@material-ui/core/TextField";
-import Chip from "@material-ui/core/Chip";
+
 import PropTypes from "prop-types";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
@@ -21,15 +19,6 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 9,
   },
 }));
-
-function getStyles(name, selectedRegion, theme) {
-  return {
-    fontWeight:
-      selectedRegion.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
 
 const RegionFilter = ({ selectedRegion, setSelectedRegion, title, data }) => {
   const classes = useStyles();

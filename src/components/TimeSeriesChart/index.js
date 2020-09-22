@@ -37,9 +37,9 @@ const TimeSeriesChart = ({ data, selectedRegion }) => {
   const handleTrackerChanged = (t) => {
     if (t) {
       const e = mobility.atTime(t);
-      const eventTime = new Date(
-        e.begin().getTime() + (e.end().getTime() - e.begin().getTime()) / 2
-      );
+      // const eventTime = new Date(
+      //   e.begin().getTime() + (e.end().getTime() - e.begin().getTime()) / 2
+      // );
       const eventValue = e.get("ratio");
       setTracker({
         value: eventValue.toFixed(2),
