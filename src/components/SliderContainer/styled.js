@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Paper } from "@material-ui/core";
 
 export const StyledWrapper = styled(Paper)`
@@ -17,7 +17,11 @@ export const StyledWrapper = styled(Paper)`
     margin-top: -25px;
     margin-left: 20px;
     background-color: currentColor;
-  }
+    ${(props) =>
+      !props.isOpen &&
+      css`
+        display: none;
+      `}
 
   .recharts-wrapper {
     margin-bottom: -50px;
