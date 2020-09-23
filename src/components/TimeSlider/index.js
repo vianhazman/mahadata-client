@@ -35,7 +35,7 @@ const TimeSlider = ({ data, index, setIndex }) => {
   }
 
   const handleChange = (event, newValue) => {
-    setIndex(index);
+    setIndex(newValue);
   };
 
   return (

@@ -66,7 +66,7 @@ const DashboardLayout = () => {
           ></LayeredMap>
         </div>
       )}
-      {selectedRegion && (
+      {!isLoading && (
         <SliderContainer
           selectedRegion={selectedRegion}
           data={data}
