@@ -11,14 +11,19 @@ const FilterContainer = ({
   setSelectedRegion,
   toggle,
   setToggle,
+  resetSelected,
 }) => {
+  const onClickToggle = (event, newValue) => {
+    setToggle(newValue);
+    resetSelected();
+  };
   return (
     <StyledWrapper>
       <h1>Dashboard Tim Sinergi Mahadata UI</h1>
       <ToggleButtonGroup
         value={toggle}
         exclusive
-        onChange={(event, newValue) => setToggle(newValue)}
+        onChange={onClickToggle}
         aria-label="text alignment"
       >
         <ToggleButton value={TOGGLE.CITY} aria-label="left aligned">
