@@ -9,6 +9,7 @@ import { TOGGLE } from "../../constants/MapConstants";
 import axios from "axios";
 import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
+import TimeLegend from "../../components/TimeLegend";
 
 const DashboardLayout = () => {
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -16,6 +17,7 @@ const DashboardLayout = () => {
   const [index, setIndex] = useState(0);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   const style = {
     position: "fixed",
     top: "50%",
@@ -80,6 +82,7 @@ const DashboardLayout = () => {
         />
       )}
       {!isLoading && <LegendContainer />}
+      {!isLoading && <TimeLegend date={data[index]?.date ?? ""} />}
     </div>
   );
 };
