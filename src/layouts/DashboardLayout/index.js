@@ -23,6 +23,10 @@ const DashboardLayout = () => {
     transform: "translate(-50%, -50%)",
   };
 
+  const resetSelected = () => {
+    setSelectedRegion("");
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -56,6 +60,7 @@ const DashboardLayout = () => {
             }
             toggle={toggle}
             setToggle={setToggle}
+            resetSelected={resetSelected}
           ></FilterContainer>
           <LayeredMap
             data={toggle === TOGGLE.CITY ? districtGeo : provincesGeo}
