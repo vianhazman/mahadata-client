@@ -6,8 +6,8 @@ export const getGeoJsonProperties = (obj, setFunction) => {
 
 export const randomRgba = (tile, heatData) => {
   let dataDate = heatData.data;
-  if (dataDate[tile.properties.name]) {
-    let i = JSON.parse(dataDate[tile.properties.name].color);
+  if (dataDate[tile.properties.kab]) {
+    let i = JSON.parse(dataDate[tile.properties.kab].color);
     return i;
   }
   return [255, 255, 255];
