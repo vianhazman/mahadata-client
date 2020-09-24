@@ -79,7 +79,7 @@ const DashboardLayout = () => {
           setIndex={setIndex}
         />
       )}
-      <LegendContainer></LegendContainer>
+      {!isLoading && <LegendContainer />}
     </div>
   );
 };
