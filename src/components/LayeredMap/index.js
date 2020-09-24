@@ -41,13 +41,13 @@ const LayeredMap = ({
     (obj, setFunction, toggle, setInitialViewState) => {
       if (obj.object) {
         if (toggle === TOGGLE.CITY) {
-          setFunction(obj.object.properties.name);
+          setFunction(obj.object.properties.kab);
         } else {
           setFunction(obj.object.properties.Propinsi);
         }
         goToPolygon(
           obj.object.geometry.type === "MultiPolygon"
-            ? obj.object.geometry.coordinates[0]
+            ? obj.object.geometry.coordinates[0][0][0]
             : obj.object.geometry.coordinates[0][0],
           setInitialViewState
         );
