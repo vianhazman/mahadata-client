@@ -1,6 +1,8 @@
 export const getGeoJsonProperties = (obj, setFunction) => {
   if (obj.object) {
     setFunction(obj);
+  } else {
+    setFunction({});
   }
 };
 

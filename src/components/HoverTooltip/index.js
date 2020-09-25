@@ -1,4 +1,4 @@
-import { Paper, Typography, Box, Grid } from "@material-ui/core";
+import { Box, Grid, Paper, Typography } from "@material-ui/core";
 
 import React from "react";
 import { TOGGLE } from "../../constants/MapConstants";
@@ -48,24 +48,26 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle }) => {
               <Typography variant="caption">Mobilitas</Typography>
             </Box>
           </Grid>
-          <Grid item sm={6}>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Box display="flex" alignItems="center" justifyContent="center">
-                <Typography variant="h4" fontStyle="oblique">
-                  <Box fontWeight="bold">1000</Box>
-                </Typography>
-              </Box>
+          {toggle === TOGGLE.PROVINSI && (
+            <Grid item sm={toggle === TOGGLE.PROVINSI ? 6 : 12}>
+              <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Box display="flex" alignItems="center" justifyContent="center">
+                  <Typography variant="h4" fontStyle="oblique">
+                    <Box fontWeight="bold">1000</Box>
+                  </Typography>
+                </Box>
 
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <Typography variant="caption">Kasus</Typography>
+                <Box display="flex" justifyContent="center" alignItems="center">
+                  <Typography variant="caption">Kasus</Typography>
+                </Box>
               </Box>
-            </Box>
-          </Grid>
+            </Grid>
+          )}
         </Grid>
       )}
     </Paper>

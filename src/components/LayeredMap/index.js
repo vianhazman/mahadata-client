@@ -82,6 +82,13 @@ const LayeredMap = ({
   ];
   return (
     <StyledMapContainer>
+      {hoverInfo.object && (
+        <HoverTooltip
+          hoverInfo={hoverInfo}
+          heatData={heatData}
+          toggle={toggle}
+        ></HoverTooltip>
+      )}
       <DeckGL
         initialViewState={initialViewState}
         height="100%"
@@ -89,13 +96,6 @@ const LayeredMap = ({
         controller={true}
         layers={layer}
       >
-        {hoverInfo.object && (
-          <HoverTooltip
-            hoverInfo={hoverInfo}
-            heatData={heatData}
-            toggle={toggle}
-          ></HoverTooltip>
-        )}
         <StaticMap mapStyle={MAP_STYLE} mapboxApiAccessToken={MAP_TOKEN} />
       </DeckGL>
     </StyledMapContainer>

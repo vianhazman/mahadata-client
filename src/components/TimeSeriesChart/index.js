@@ -30,7 +30,7 @@ const TimeSeriesChart = ({ data, selectedRegion }) => {
     Annotation,
     "Annotations",
     ANNOTATION_TYPE.EVENT,
-    selectedRegion
+    "Global"
   );
 
   const [tracker, setTracker] = useState({ value: null, event: null });
