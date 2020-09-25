@@ -56,7 +56,7 @@ const DashboardLayout = () => {
             data={
               toggle === TOGGLE.CITY
                 ? districtGeo.map((x) =>
-                    x.properties.name ? x.properties.name : ""
+                    x.properties.kab ? x.properties.kab : ""
                   )
                 : provincesGeo.map((x) => x.properties.Propinsi)
             }
