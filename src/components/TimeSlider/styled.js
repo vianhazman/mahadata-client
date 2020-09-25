@@ -17,4 +17,17 @@ export const StyledContainer = styled(Grid)`
     margin-top: -100px;
     background-color: currentColor;
   }
+
+  .MuiSlider-thumb:hover::before,
+  .MuiSlider-thumb:active::before {
+    content: "${(props) => props.currentDate}";
+    top: -70px;
+    position: absolute;
+    width: 6em;
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 4px;
+    text-align: center;
+    padding: 8px;
+  }
 `;
