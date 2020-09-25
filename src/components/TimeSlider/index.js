@@ -39,7 +39,7 @@ const TimeSlider = ({ data, index, setIndex }) => {
   };
 
   return (
-    <StyledContainer container>
+    <StyledContainer container currentDate={data[index]?.date}>
       <Grid item xs={1}>
         <Button
           variant="contained"
