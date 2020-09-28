@@ -12,6 +12,7 @@ import { StyledMapContainer } from "./styled";
 const LayeredMap = ({
   data,
   toggle,
+  toggleData,
   selectedRegion,
   setSelectedRegion,
   heatData,
@@ -72,9 +73,9 @@ const LayeredMap = ({
       getLineColor: [255, 255, 255],
       lineWidthMaxPixels: 1,
       autoHighlight: true,
-      getFillColor: (info) => randomRgba(info, heatData),
+      getFillColor: (info) => randomRgba(info, toggleData, heatData),
       updateTriggers: {
-        getFillColor: (info) => randomRgba(info, heatData),
+        getFillColor: (info) => randomRgba(info, toggleData, heatData),
       },
       onHover: (info) => getGeoJsonProperties(info, setHoverInfo),
       onClick: (info) =>
@@ -88,6 +89,7 @@ const LayeredMap = ({
           hoverInfo={hoverInfo}
           heatData={heatData}
           toggle={toggle}
+          toggleData={toggleData}
         ></HoverTooltip>
       )}
       <DeckGL

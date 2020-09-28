@@ -2,7 +2,7 @@ import React from "react";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import TrendingDownIcon from "@material-ui/icons/TrendingDown";
 import { Box, Typography } from "@material-ui/core";
-export const getChangeCaption = (hoverInfo, heatData) => {
+export const getChangeCaption = (hoverInfo, heatData, toggleData) => {
   let change = heatData.data[hoverInfo.object.properties.kab].change;
   if (change <= 0) {
     return (
@@ -12,7 +12,8 @@ export const getChangeCaption = (hoverInfo, heatData) => {
         justifyContent="center"
         fontWeight="bold"
       >
-        <TrendingDownIcon />
+        {toggleData === "Mobilitas" && <TrendingDownIcon />}
+
         <Typography variant="h4" fontStyle="oblique">
           <Box fontWeight="bold" ml={1}>
             {Math.abs(change)}%
@@ -23,7 +24,7 @@ export const getChangeCaption = (hoverInfo, heatData) => {
   } else {
     return (
       <Box display="flex" alignItems="center" justifyContent="center">
-        <TrendingUpIcon />
+        {toggleData === "Mobilitas" && <TrendingUpIcon />}
         <Typography variant="h4" fontStyle="oblique">
           <Box fontWeight="bold" ml={1}>
             {change}%
@@ -32,4 +33,4 @@ export const getChangeCaption = (hoverInfo, heatData) => {
       </Box>
     );
   }
-  };
+};

@@ -14,6 +14,8 @@ export const INITIAL_VIEW_STATE = {
 export const TOGGLE = {
   PROVINCE: "Provinsi",
   CITY: "Kota/Kabupaten",
+  RATIO: "Ratio",
+  MOBILITY: "Mobilitas",
 };
 
 export const MAP_STYLE = "mapbox://styles/vianhazman/cke27qnxk0nr819qo5js4oxnf";

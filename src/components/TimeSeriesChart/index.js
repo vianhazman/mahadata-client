@@ -19,9 +19,11 @@ import {
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 import Annotation from "../../services/HeatMap/annotation";
+import BarChart from "react-timeseries-charts/lib/components/BarChart";
 
-const TimeSeriesChart = ({ data, selectedRegion }) => {
-  const mobility = getChartTimeSeries(data, selectedRegion, "Mobility");
+const TimeSeriesChart = ({ data, selectedRegion, toggleData }) => {
+  const mobility = getChartTimeSeries(data, selectedRegion, toggleData);
+
   const rangeAnnotation = getAnnotationTimeSeries(
     Annotation,
     "Annotations",
@@ -52,6 +54,7 @@ const TimeSeriesChart = ({ data, selectedRegion }) => {
       setTracker({ value: null, event: null });
     }
   };
+
   return (
     <Resizable>
       <ChartContainer
@@ -82,24 +85,34 @@ const TimeSeriesChart = ({ data, selectedRegion }) => {
         <ChartRow>
           <YAxis
             id="mobility"
-            label="Mobility"
+            label={toggleData}
             format=".2f"
             min={mobility.min("ratio")}
             max={mobility.max("ratio")}
             type="linear"
           />
           <Charts>
-            <LineChart
-              axis="mobility"
-              columns={["ratio"]}
-              series={mobility}
-              onMouseNear={(p) => this.handleMouseNear(p)}
-            />
+            {toggleData === "Mobilitas" ? (
+              <LineChart
+                axis="mobility"
+                columns={["ratio"]}
+                series={mobility}
+                onMouseNear={(p) => this.handleMouseNear(p)}
+              />
+            ) : (
+              <BarChart
+                axis="mobility"
+                columns={["ratio"]}
+                series={mobility}
+                onMouseNear={(p) => this.handleMouseNear(p)}
+              />
+            )}
+
             <Baseline
               axis="mobility"
               style={baselineStyle}
               value={0}
-              label="Mobilitas sebelum pandemi"
+              label={`${toggleData} sebelum pandemi`}
               position="right"
             />
             <EventMarker
@@ -107,7 +120,7 @@ const TimeSeriesChart = ({ data, selectedRegion }) => {
               axis="mobility"
               event={tracker.event}
               infoTimeFormat="%d-%m-%Y"
-              info={[{ label: "Mobilitas", value: `${tracker.value}%` }]}
+              info={[{ label: toggleData, value: `${tracker.value}%` }]}
               column="ratio"
               markerLabelAlign="left"
               markerRadius={3}
