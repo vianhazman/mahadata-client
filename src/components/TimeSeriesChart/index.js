@@ -8,6 +8,7 @@ import {
   Resizable,
   YAxis,
   Baseline,
+  BarChart,
 } from "react-timeseries-charts";
 import React, { useState } from "react";
 import {
@@ -19,7 +20,6 @@ import {
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 import Annotation from "../../services/HeatMap/annotation";
-import BarChart from "react-timeseries-charts/lib/components/BarChart";
 
 const TimeSeriesChart = ({ data, selectedRegion, toggleData }) => {
   const mobility = getChartTimeSeries(data, selectedRegion, toggleData);
@@ -59,7 +59,7 @@ const TimeSeriesChart = ({ data, selectedRegion, toggleData }) => {
     <Resizable>
       <ChartContainer
         timeRange={mobility.range()}
-        timeAxisTickCount={mobility.count}
+        // timeAxisTickCount={mobility.count()}
         onTrackerChanged={handleTrackerChanged}
         showGrid={true}
         showGridPosition="under"
