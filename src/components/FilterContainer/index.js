@@ -11,11 +11,21 @@ const FilterContainer = ({
   setSelectedRegion,
   toggle,
   setToggle,
+  toggleData,
+  setToggleData,
   resetSelected,
 }) => {
   const onClickToggle = (event, newValue) => {
-    setToggle(newValue);
-    resetSelected();
+    if (newValue) {
+      setToggle(newValue);
+      resetSelected();
+    }
+  };
+  const onClickToggleData = (event, newValue) => {
+    if (newValue) {
+      setToggleData(newValue);
+      resetSelected();
+    }
   };
   return (
     <StyledWrapper>
@@ -31,6 +41,20 @@ const FilterContainer = ({
         </ToggleButton>
         <ToggleButton value={TOGGLE.PROVINCE} aria-label="right aligned">
           {TOGGLE.PROVINCE}
+        </ToggleButton>
+      </ToggleButtonGroup>
+      <ToggleButtonGroup
+        value={toggleData}
+        exclusive
+        onChange={onClickToggleData}
+        aria-label="text alignment"
+        style={{ marginLeft: "2rem" }}
+      >
+        <ToggleButton value={TOGGLE.MOBILITY} aria-label="left aligned">
+          {TOGGLE.MOBILITY}
+        </ToggleButton>
+        <ToggleButton value={TOGGLE.RATIO} aria-label="right aligned">
+          {TOGGLE.RATIO}
         </ToggleButton>
       </ToggleButtonGroup>
       <RegionFilter

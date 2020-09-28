@@ -14,6 +14,7 @@ import TimeLegend from "../../components/TimeLegend";
 const DashboardLayout = () => {
   const [selectedRegion, setSelectedRegion] = useState("");
   const [toggle, setToggle] = useState(TOGGLE.CITY);
+  const [toggleData, setToggleData] = useState(TOGGLE.MOBILITY);
   const [index, setIndex] = useState(0);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -61,6 +62,8 @@ const DashboardLayout = () => {
                 : provincesGeo.map((x) => x.properties.Propinsi)
             }
             toggle={toggle}
+            toggleData={toggleData}
+            setToggleData={setToggleData}
             setToggle={setToggle}
             resetSelected={resetSelected}
           ></FilterContainer>
@@ -69,6 +72,7 @@ const DashboardLayout = () => {
             selectedRegion={selectedRegion}
             setSelectedRegion={setSelectedRegion}
             toggle={toggle}
+            toggleData={toggleData}
             heatData={data[index]}
           ></LayeredMap>
         </div>
@@ -77,12 +81,15 @@ const DashboardLayout = () => {
         <SliderContainer
           selectedRegion={selectedRegion}
           data={data}
+          toggleData={toggleData}
           index={index}
           setIndex={setIndex}
         />
       )}
-      {!isLoading && <LegendContainer />}
-      {!isLoading && <TimeLegend date={data[index]?.date ?? ""} />}
+      {!isLoading && <LegendContainer toggleData={toggleData} />}
+      {!isLoading && (
+        <TimeLegend date={data[index]?.date ?? ""} toggleData={toggleData} />
+      )}
     </div>
   );
 };

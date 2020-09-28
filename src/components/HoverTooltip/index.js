@@ -4,7 +4,7 @@ import React from "react";
 import { TOGGLE } from "../../constants/MapConstants";
 import { getChangeCaption } from "./utils";
 
-const HoverTooltip = ({ hoverInfo, heatData, toggle }) => {
+const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
   let dataExist =
     heatData.data[hoverInfo.object.properties.kab] !== undefined ? true : false;
 
@@ -42,10 +42,10 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle }) => {
               alignItems="center"
               textAlign="center"
             >
-              {getChangeCaption(hoverInfo, heatData)}
+              {getChangeCaption(hoverInfo, heatData, toggleData)}
             </Box>
             <Box display="flex" justifyContent="center" alignItems="center">
-              <Typography variant="caption">Mobilitas</Typography>
+              <Typography variant="caption">{toggleData}</Typography>
             </Box>
           </Grid>
           {toggle === TOGGLE.PROVINSI && (

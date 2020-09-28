@@ -32,13 +32,14 @@ export const getChartTimeSeries = (data, selectedRegion, seriesName) => {
     if (keyA > keyB) return 1;
     return 0;
   });
+  let dataType = seriesName === "Mobilitas" ? "change" : "ratio";
 
   return new TimeSeries({
     name: seriesName,
     columns: ["time", "ratio"],
     points: data.map((data) => [
       new Date(data.date).setHours(0, 0, 0, 0),
-      data.data[selectedRegion].change,
+      data.data[selectedRegion][dataType],
     ]),
   });
 };
