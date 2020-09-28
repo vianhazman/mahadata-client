@@ -50,3 +50,15 @@ export const getAnnotationColor = (event, state) => {
     fill: color,
   };
 };
+
+export const baselineStyle = {
+  line: {
+    stroke: "rgb(153, 142, 195)",
+    strokeWidth: 1,
+    opacity: 0.4,
+    strokeDasharray: "none",
+  },
+  label: {
+    fill: "rgb(153, 142, 195)",
+  },
+};

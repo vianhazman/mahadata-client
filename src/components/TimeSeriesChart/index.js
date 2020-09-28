@@ -7,12 +7,14 @@ import {
   LineChart,
   Resizable,
   YAxis,
+  Baseline,
 } from "react-timeseries-charts";
 import React, { useState } from "react";
 import {
   getAnnotationColor,
   getAnnotationTimeSeries,
   getChartTimeSeries,
+  baselineStyle,
 } from "./utils";
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
@@ -92,6 +94,13 @@ const TimeSeriesChart = ({ data, selectedRegion }) => {
               columns={["ratio"]}
               series={mobility}
               onMouseNear={(p) => this.handleMouseNear(p)}
+            />
+            <Baseline
+              axis="mobility"
+              style={baselineStyle}
+              value={0}
+              label="Mobilitas sebelum pandemi"
+              position="right"
             />
             <EventMarker
               type="flag"
