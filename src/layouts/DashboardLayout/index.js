@@ -5,12 +5,12 @@ import LayeredMap from "../../components/LayeredMap";
 import LegendContainer from "../../components/LegendContainer";
 import PulseLoader from "react-spinners/PulseLoader";
 import SliderContainer from "../../components/SliderContainer";
+import { StyledMapLayoutContainer } from "./styled";
 import { TOGGLE } from "../../constants/MapConstants";
+import TimeLegend from "../../components/TimeLegend";
 import axios from "axios";
 import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
-import TimeLegend from "../../components/TimeLegend";
-import { StyledMapLayoutContainer } from "./styled";
 
 const DashboardLayout = () => {
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -35,7 +35,7 @@ const DashboardLayout = () => {
     const fetchData = async () => {
       setIsLoading(true);
 
-      const result = await axios("http://localhost:5000/data/daily");
+      const result = await axios("http://localhost:5000/data/daily/district");
 
       setData(result.data);
       console.log(result.data);
