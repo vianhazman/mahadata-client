@@ -6,3 +6,7 @@ export const StyledDashboardLayout = styled.div`
   }
 `;
 
+export const StyledMapLayoutContainer = styled.div`
+  min-width: 1280px;
+  min-height: 720px;
+`;

@@ -10,6 +10,7 @@ import axios from "axios";
 import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
 import TimeLegend from "../../components/TimeLegend";
+import { StyledMapLayoutContainer } from "./styled";
 
 const DashboardLayout = () => {
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -50,7 +51,7 @@ const DashboardLayout = () => {
         <PulseLoader loading={isLoading} />
       </div>
       {!isLoading && (
-        <div>
+        <StyledMapLayoutContainer>
           <FilterContainer
             selectedRegion={selectedRegion}
             setSelectedRegion={setSelectedRegion}
@@ -75,7 +76,7 @@ const DashboardLayout = () => {
             toggleData={toggleData}
             heatData={data[index]}
           ></LayeredMap>
-        </div>
+        </StyledMapLayoutContainer>
       )}
       {!isLoading && (
         <SliderContainer
