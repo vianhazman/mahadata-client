@@ -3,7 +3,9 @@ import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import TrendingDownIcon from "@material-ui/icons/TrendingDown";
 import { Box, Typography } from "@material-ui/core";
 export const getChangeCaption = (hoverInfo, heatData, toggleData) => {
-  let change = heatData.data[hoverInfo.object.properties.kab].change;
+  let change =
+    heatData.data[hoverInfo.object.properties.kab]?.change ||
+    heatData.data[hoverInfo.object.properties.Propinsi]?.change;
   if (change <= 0) {
     return (
       <Box

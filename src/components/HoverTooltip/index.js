@@ -6,7 +6,8 @@ import { getChangeCaption } from "./utils";
 
 const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
   let dataExist =
-    heatData.data[hoverInfo.object.properties.kab] !== undefined ? true : false;
+    heatData.data[hoverInfo.object.properties.kab] !== undefined ||
+    heatData.data[hoverInfo.object.properties.Propinsi] !== undefined;
 
   return (
     <Paper
@@ -23,11 +24,8 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
         <Typography variant="caption">
           <Box fontWeight="bold" mr={2}>
             {toggle === TOGGLE.CITY
-              ? hoverInfo.object.properties.KABKOT
+              ? `${hoverInfo.object.properties.KABKOT}, ${hoverInfo.object.properties.PROVINSI}`
               : hoverInfo.object.properties.Propinsi}
-            {toggle === TOGGLE.CITY
-              ? `, ${hoverInfo.object.properties.PROVINSI}`
-              : ""}
           </Box>
         </Typography>
         <Typography variant="caption">{heatData.date ?? ""}</Typography>
@@ -48,7 +46,7 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
               <Typography variant="caption">{toggleData}</Typography>
             </Box>
           </Grid>
-          {toggle === TOGGLE.PROVINSI && (
+          {/* {toggle === TOGGLE.PROVINSI && (
             <Grid item sm={toggle === TOGGLE.PROVINSI ? 6 : 12}>
               <Box
                 display="flex"
@@ -67,7 +65,7 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
                 </Box>
               </Box>
             </Grid>
-          )}
+          )} */}
         </Grid>
       )}
     </Paper>
