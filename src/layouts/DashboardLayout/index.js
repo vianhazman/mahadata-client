@@ -19,7 +19,9 @@ const DashboardLayout = () => {
   const [index, setIndex] = useState(0);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [districtData, setDistrictData] = useState([]);
+  const [provinceData, setProvinceData] = useState([]);
+  console.log(data);
   const style = {
     position: "fixed",
     top: "50%",
@@ -34,16 +36,38 @@ const DashboardLayout = () => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-
-      const result = await axios("http://localhost:5000/data/daily/district");
-
-      setData(result.data);
-      console.log(result.data);
-      setIsLoading(false);
+      try {
+        const result1 = await axios(
+          "http://localhost:5000/data/daily/district"
+        );
+        setData(result1.data);
+        setDistrictData(result1.data);
+        const result2 = await axios(
+          "http://localhost:5000/data/daily/province"
+        );
+        setProvinceData(result2.data);
+      } catch (error) {
+        alert("Oops, terdapat sebuah masalah.");
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    switch (toggle) {
+      case TOGGLE.CITY:
+        setData(districtData);
+        break;
+      case TOGGLE.PROVINCE:
+        setData(provinceData);
+        break;
+      default:
+        break;
+    }
+  }, [toggle, districtData, provinceData]);
 
   return (
     <div>

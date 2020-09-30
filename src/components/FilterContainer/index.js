@@ -24,7 +24,7 @@ const FilterContainer = ({
   const onClickToggleData = (event, newValue) => {
     if (newValue) {
       setToggleData(newValue);
-      resetSelected();
+      // resetSelected();
     }
   };
   return (
