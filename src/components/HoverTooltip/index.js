@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from "@material-ui/core";
+import { Box, Paper, Typography } from "@material-ui/core";
 
 import React from "react";
 import { TOGGLE } from "../../constants/MapConstants";
@@ -14,6 +14,7 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
       style={{
         position: "absolute",
         zIndex: 1,
+        width: "fit-content",
         pointerEvents: "none",
         padding: "0.5%",
         left: hoverInfo.x,
@@ -31,8 +32,8 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
         <Typography variant="caption">{heatData.date ?? ""}</Typography>
       </Box>
       {dataExist && (
-        <Grid container spacing={1}>
-          <Grid item xs={6}>
+        <Box display="flex" flexDirection="row" alignItems="center">
+          <Box mr={1}>
             <Box
               display="flex"
               flexDirection="column"
@@ -45,9 +46,9 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
             <Box display="flex" justifyContent="center" alignItems="center">
               <Typography variant="caption">{toggleData}</Typography>
             </Box>
-          </Grid>
-          {/* {toggle === TOGGLE.PROVINSI && (
-            <Grid item sm={toggle === TOGGLE.PROVINSI ? 6 : 12}>
+          </Box>
+          {toggle === TOGGLE.PROVINCE && (
+            <Box ml={1}>
               <Box
                 display="flex"
                 flexDirection="column"
@@ -64,9 +65,9 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
                   <Typography variant="caption">Kasus</Typography>
                 </Box>
               </Box>
-            </Grid>
-          )} */}
-        </Grid>
+            </Box>
+          )}
+        </Box>
       )}
     </Paper>
   );
