@@ -14,11 +14,6 @@ const HoverTooltip = ({
   let dataExist =
     heatData.data[hoverInfo.object.properties.kab] !== undefined ||
     heatData.data[hoverInfo.object.properties.Propinsi] !== undefined;
-  if (toggle === TOGGLE.PROVINCE) {
-    console.log(
-      caseData ? caseData.data[hoverInfo.object.properties.Propinsi] : "Kosong"
-    );
-  }
   return (
     <Paper
       style={{
