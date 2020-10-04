@@ -4,7 +4,6 @@ import TrendingDownIcon from "@material-ui/icons/TrendingDown";
 import { Box, Typography } from "@material-ui/core";
 import { TOGGLE } from "../../constants/MapConstants";
 export const getChangeCaption = (hoverInfo, heatData, toggle, toggleData) => {
-  console.log("toggle", toggle);
   const toggleType = toggleData === "Mobilitas" ? "change" : "ratio";
   const data =
     toggle === TOGGLE.CITY
