@@ -29,7 +29,7 @@ const FilterContainer = ({
   };
   return (
     <StyledWrapper>
-      <h1>Dashboard Tim Sinergi Mahadata UI</h1>
+      <h3>Dashboard Tim Sinergi Mahadata UI</h3>
       <ToggleButtonGroup
         value={toggle}
         exclusive

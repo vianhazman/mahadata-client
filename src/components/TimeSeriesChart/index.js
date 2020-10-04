@@ -15,14 +15,25 @@ import {
   getAnnotationColor,
   getAnnotationTimeSeries,
   getChartTimeSeries,
+  getCasesChartTimeSeries,
   baselineStyle,
 } from "./utils";
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 import Annotation from "../../services/HeatMap/annotation";
 
-const TimeSeriesChart = ({ data, selectedRegion, toggleData }) => {
+const TimeSeriesChart = ({
+  data,
+  selectedRegion,
+  toggleData,
+  toggle,
+  provinceCaseData,
+}) => {
   const mobility = getChartTimeSeries(data, selectedRegion, toggleData);
+  const provinceCase =
+    toggle === "Provinsi"
+      ? getCasesChartTimeSeries(provinceCaseData, selectedRegion)
+      : "";
 
   const rangeAnnotation = getAnnotationTimeSeries(
     Annotation,
@@ -30,6 +41,7 @@ const TimeSeriesChart = ({ data, selectedRegion, toggleData }) => {
     ANNOTATION_TYPE.RANGE,
     selectedRegion
   );
+
   const eventAnnotation = getAnnotationTimeSeries(
     Annotation,
     "Annotations",
@@ -38,23 +50,30 @@ const TimeSeriesChart = ({ data, selectedRegion, toggleData }) => {
   );
 
   const [tracker, setTracker] = useState({ value: null, event: null });
+  const [caseTracker, setCaseTracker] = useState({ value: null, event: null });
 
   const handleTrackerChanged = (t) => {
     if (t) {
       const e = mobility.atTime(t);
+      const c = provinceCase.atTime(t);
       // const eventTime = new Date(
       //   e.begin().getTime() + (e.end().getTime() - e.begin().getTime()) / 2
       // );
       const eventValue = e.get("ratio");
+      const caseValue = c.get("case");
       setTracker({
         value: eventValue.toFixed(2),
         event: e,
       });
+      setCaseTracker({
+        value: caseValue,
+        event: c,
+      });
     } else {
       setTracker({ value: null, event: null });
+      setCaseTracker({ value: null, event: null });
     }
   };
-
   return (
     <Resizable>
       <ChartContainer
@@ -82,6 +101,40 @@ const TimeSeriesChart = ({ data, selectedRegion, toggleData }) => {
             />
           </Charts>
         </ChartRow>
+        {toggle === "Provinsi" ? (
+          <ChartRow>
+            <YAxis
+              id="case"
+              label={"Kasus"}
+              format=".2f"
+              min={provinceCase.min("case")}
+              max={provinceCase.max("case")}
+              type="linear"
+            />
+            <Charts>
+              <LineChart
+                axis="case"
+                columns={["case"]}
+                series={provinceCase}
+                onMouseNear={(p) => this.handleMouseNear(p)}
+              />
+
+              <EventMarker
+                type="flag"
+                axis="case"
+                event={caseTracker.event}
+                infoTimeFormat="%d-%m-%Y"
+                info={[{ label: "Kasus", value: `${caseTracker.value}` }]}
+                column="case"
+                markerLabelAlign="left"
+                markerRadius={3}
+              />
+            </Charts>
+          </ChartRow>
+        ) : (
+          ""
+        )}
+
         <ChartRow>
           <YAxis
             id="mobility"

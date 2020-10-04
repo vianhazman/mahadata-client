@@ -110,7 +110,9 @@ const DashboardLayout = () => {
         <SliderContainer
           selectedRegion={selectedRegion}
           data={data}
+          toggle={toggle}
           toggleData={toggleData}
+          provinceCaseData={provinceCaseData}
           index={index}
           setIndex={setIndex}
         />
