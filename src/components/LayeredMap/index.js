@@ -16,6 +16,7 @@ const LayeredMap = ({
   selectedRegion,
   setSelectedRegion,
   heatData,
+  caseData,
 }) => {
   const [hoverInfo, setHoverInfo] = useState({});
   const [initialViewState, setInitialViewState] = useState(INITIAL_VIEW_STATE);
@@ -90,6 +91,7 @@ const LayeredMap = ({
           heatData={heatData}
           toggle={toggle}
           toggleData={toggleData}
+          caseData={caseData}
         ></HoverTooltip>
       )}
       <DeckGL
