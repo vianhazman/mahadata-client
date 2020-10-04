@@ -8,7 +8,9 @@ const SliderContainer = ({
   selectedRegion,
   index,
   setIndex,
+  toggle,
   toggleData,
+  provinceCaseData,
 }) => {
   return (
     <StyledWrapper isOpen={selectedRegion}>
@@ -18,6 +20,8 @@ const SliderContainer = ({
           <TimeSeriesChart
             toggleData={toggleData}
             data={data}
+            toggle={toggle}
+            provinceCaseData={provinceCaseData}
             selectedRegion={selectedRegion}
           ></TimeSeriesChart>
         </Fragment>

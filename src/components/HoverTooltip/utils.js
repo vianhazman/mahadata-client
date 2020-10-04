@@ -5,10 +5,11 @@ import { Box, Typography } from "@material-ui/core";
 import { TOGGLE } from "../../constants/MapConstants";
 export const getChangeCaption = (hoverInfo, heatData, toggle, toggleData) => {
   const toggleType = toggleData === "Mobilitas" ? "change" : "ratio";
+
   const data =
     toggle === TOGGLE.CITY
-      ? heatData.data[hoverInfo.object.properties.kab][toggleType]
-      : heatData.data[hoverInfo.object.properties.Propinsi][toggleType];
+      ? heatData.data[hoverInfo.object.properties?.kab][toggleType]
+      : heatData.data[hoverInfo.object.properties?.Propinsi][toggleType];
   if (data <= 0) {
     return (
       <Box
@@ -18,7 +19,6 @@ export const getChangeCaption = (hoverInfo, heatData, toggle, toggleData) => {
         fontWeight="bold"
       >
         {toggleData === "Mobilitas" && <TrendingDownIcon />}
-
         <Typography variant="h4" fontStyle="oblique">
           <Box fontWeight="bold" ml={1}>
             {Math.abs(data)}%
