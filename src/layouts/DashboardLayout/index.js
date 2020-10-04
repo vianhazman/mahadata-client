@@ -48,8 +48,6 @@ const DashboardLayout = () => {
         setProvinceData(result2.data);
         const result3 = await axios("http://localhost:5000/data/case/province");
         setProvinceCaseData(result3.data);
-        console.log(result2.data);
-        console.log(result3.data);
       } catch (error) {
         alert("Oops, terdapat sebuah masalah.");
       } finally {
