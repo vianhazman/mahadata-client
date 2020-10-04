@@ -2,11 +2,15 @@ import React from "react";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import TrendingDownIcon from "@material-ui/icons/TrendingDown";
 import { Box, Typography } from "@material-ui/core";
-export const getChangeCaption = (hoverInfo, heatData, toggleData) => {
-  let change =
-    heatData.data[hoverInfo.object.properties.kab]?.change ||
-    heatData.data[hoverInfo.object.properties.Propinsi]?.change;
-  if (change <= 0) {
+import { TOGGLE } from "../../constants/MapConstants";
+export const getChangeCaption = (hoverInfo, heatData, toggle, toggleData) => {
+  console.log("toggle", toggle);
+  const toggleType = toggleData === "Mobilitas" ? "change" : "ratio";
+  const data =
+    toggle === TOGGLE.CITY
+      ? heatData.data[hoverInfo.object.properties.kab][toggleType]
+      : heatData.data[hoverInfo.object.properties.Propinsi][toggleType];
+  if (data <= 0) {
     return (
       <Box
         display="flex"
@@ -18,7 +22,7 @@ export const getChangeCaption = (hoverInfo, heatData, toggleData) => {
 
         <Typography variant="h4" fontStyle="oblique">
           <Box fontWeight="bold" ml={1}>
-            {Math.abs(change)}%
+            {Math.abs(data)}%
           </Box>
         </Typography>
       </Box>
@@ -26,10 +30,10 @@ export const getChangeCaption = (hoverInfo, heatData, toggleData) => {
   } else {
     return (
       <Box display="flex" alignItems="center" justifyContent="center">
-        {toggleData === "Mobilitas" && <TrendingUpIcon />}
+        {toggleData === "Ratio" && <TrendingUpIcon />}
         <Typography variant="h4" fontStyle="oblique">
           <Box fontWeight="bold" ml={1}>
-            {change}%
+            {data}%
           </Box>
         </Typography>
       </Box>

@@ -21,7 +21,7 @@ const DashboardLayout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [districtData, setDistrictData] = useState([]);
   const [provinceData, setProvinceData] = useState([]);
-  console.log(data);
+  const [provinceCaseData, setProvinceCaseData] = useState([]);
   const style = {
     position: "fixed",
     top: "50%",
@@ -46,6 +46,10 @@ const DashboardLayout = () => {
           "http://localhost:5000/data/daily/province"
         );
         setProvinceData(result2.data);
+        const result3 = await axios("http://localhost:5000/data/case/province");
+        setProvinceCaseData(result3.data);
+        console.log(result2.data);
+        console.log(result3.data);
       } catch (error) {
         alert("Oops, terdapat sebuah masalah.");
       } finally {
@@ -99,6 +103,8 @@ const DashboardLayout = () => {
             toggle={toggle}
             toggleData={toggleData}
             heatData={data[index]}
+            // If current date has no case send null instead
+            caseData={index >= 17 ? provinceCaseData[index - 17] : null}
           ></LayeredMap>
         </StyledMapLayoutContainer>
       )}

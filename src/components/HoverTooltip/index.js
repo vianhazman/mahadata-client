@@ -4,11 +4,21 @@ import React from "react";
 import { TOGGLE } from "../../constants/MapConstants";
 import { getChangeCaption } from "./utils";
 
-const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
+const HoverTooltip = ({
+  hoverInfo,
+  heatData,
+  toggle,
+  toggleData,
+  caseData,
+}) => {
   let dataExist =
     heatData.data[hoverInfo.object.properties.kab] !== undefined ||
     heatData.data[hoverInfo.object.properties.Propinsi] !== undefined;
-
+  if (toggle === TOGGLE.PROVINCE) {
+    console.log(
+      caseData ? caseData.data[hoverInfo.object.properties.Propinsi] : "Kosong"
+    );
+  }
   return (
     <Paper
       style={{
@@ -41,7 +51,7 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
               alignItems="center"
               textAlign="center"
             >
-              {getChangeCaption(hoverInfo, heatData, toggleData)}
+              {getChangeCaption(hoverInfo, heatData, toggle, toggleData)}
             </Box>
             <Box display="flex" justifyContent="center" alignItems="center">
               <Typography variant="caption">{toggleData}</Typography>
@@ -57,7 +67,11 @@ const HoverTooltip = ({ hoverInfo, heatData, toggle, toggleData }) => {
               >
                 <Box display="flex" alignItems="center" justifyContent="center">
                   <Typography variant="h4" fontStyle="oblique">
-                    <Box fontWeight="bold">1000</Box>
+                    <Box fontWeight="bold">
+                      {caseData
+                        ? caseData.data[hoverInfo.object.properties.Propinsi]
+                        : "-"}
+                    </Box>
                   </Typography>
                 </Box>
 
