@@ -32,7 +32,6 @@ export const getChartTimeSeries = (data, selectedRegion, seriesName) => {
     if (keyA > keyB) return 1;
     return 0;
   });
-
   if (seriesName === "Mobilitas") {
     return new TimeSeries({
       name: seriesName,
@@ -52,6 +51,26 @@ export const getChartTimeSeries = (data, selectedRegion, seriesName) => {
       ]),
     });
   }
+};
+
+export const getCasesChartTimeSeries = (data, selectedRegion) => {
+  data.sort(function (a, b) {
+    var keyA = new Date(a.date),
+      keyB = new Date(b.date);
+    // Compare the 2 dates
+    if (keyA < keyB) return -1;
+    if (keyA > keyB) return 1;
+    return 0;
+  });
+
+  return new TimeSeries({
+    name: "Kasus",
+    columns: ["time", "case"],
+    points: data.map((data) => [
+      new Date(data.date).setHours(0, 0, 0, 0),
+      parseInt(data.data[selectedRegion].replace(",", "")),
+    ]),
+  });
 };
 
 export const getAnnotationColor = (event, state) => {

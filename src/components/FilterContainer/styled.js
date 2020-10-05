@@ -8,4 +8,10 @@ export const StyledWrapper = styled(Paper)`
   margin: 2% 2% 2% 2%;
   background-color: rgba(255, 255, 255, 0.75);
   z-index: 999;
+  .MuiToggleButton-root {
+    font-size: 0.5rem;
+  }
+  .MuiInputBase-input {
+    height: 0.5rem;
+  }
 `;
