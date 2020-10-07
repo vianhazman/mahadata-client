@@ -1,4 +1,15 @@
+# Mahadata-Client
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Environment Variables
+
+Please create an `.env` file with this structure:
+
+```
+REACT_APP_PROD_API_URL=http://production-backend:5000
+REACT_APP_DEV_API_URL=http://localhost:5000
+```
 
 ## Available Scripts
 
