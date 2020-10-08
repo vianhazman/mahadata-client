@@ -15,3 +15,11 @@ export const StyledWrapper = styled(Paper)`
     height: 0.5rem;
   }
 `;
+
+export const WrapperLogo = styled.div`
+  display: flex;
+  > * {
+    max-height: 60px;
+    margin-right: 16px;
+  }
+`;
