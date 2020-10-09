@@ -78,6 +78,7 @@ export const getAnnotationColor = (event, state) => {
     event.get("type") === ANNOTATION_TYPE.EVENT ? "#998ec3" : "#f1a340";
   return {
     fill: color,
+    opacity: 1,
   };
 };
 
@@ -90,5 +91,6 @@ export const baselineStyle = {
   },
   label: {
     fill: "rgb(153, 142, 195)",
+    fontWeight: "bold",
   },
 };
