@@ -12,11 +12,14 @@ const SliderContainer = ({
   toggleData,
   provinceCaseData,
 }) => {
+  console.log(toggleData);
   return (
     <StyledWrapper isOpen={selectedRegion}>
       {selectedRegion && (
         <Fragment>
-          <h4>Grafik Mobilitas di {selectedRegion}</h4>
+          <h4>
+            Grafik {toggleData} di {selectedRegion}
+          </h4>
           <TimeSeriesChart
             toggleData={toggleData}
             data={data}
