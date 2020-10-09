@@ -14,7 +14,7 @@ export const INITIAL_VIEW_STATE = {
 export const TOGGLE = {
   PROVINCE: "Provinsi",
   CITY: "Kota/Kabupaten",
-  RATIO: "Ratio",
+  RATIO: "Kepatuhan",
   MOBILITY: "Mobilitas",
 };
 
