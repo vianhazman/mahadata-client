@@ -17,7 +17,7 @@ animation-fill-mode: forwards;
 @keyframes show {
   0%   {height: 25px;}
  
-  100% {height: 320px;}
+  100% {height: 220px;}
 }`}
   ${({ isOpen }) => !isOpen && "height:25px;"};
 `;
@@ -30,9 +30,9 @@ export const WrapperBox = styled(Box)`
   height: 10px;
   h6 {
     margin: 0;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
   }
-  margin-bottom: 0.5rem;
+  // margin-bottom: 0.5rem;
 `;
 export const Color = styled(Box)`
   background-color: ${({ color }) => color};
