@@ -11,6 +11,14 @@ REACT_APP_PROD_API_URL=http://production-backend:5000
 REACT_APP_DEV_API_URL=http://localhost:5000
 ```
 
+## Deployment to remote Nginx server
+
+`deploy.sh` script is provided to do `rsync` between local build and Nginx. To run - two configurations must be supplied in `.env` file.
+
+```
+
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
