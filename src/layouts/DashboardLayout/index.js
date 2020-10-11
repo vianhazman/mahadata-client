@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import { BASE_PATH } from "../../constants/Api";
 import FilterContainer from "../../components/FilterContainer";
 import LayeredMap from "../../components/LayeredMap";
 import LegendContainer from "../../components/LegendContainer";
@@ -38,16 +39,12 @@ const DashboardLayout = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const result1 = await axios(
-          "http://localhost:5000/data/daily/district"
-        );
+        const result1 = await axios(`${BASE_PATH}/data/daily/district`);
         setData(result1.data);
         setDistrictData(result1.data);
-        const result2 = await axios(
-          "http://localhost:5000/data/daily/province"
-        );
+        const result2 = await axios(`${BASE_PATH}/data/daily/province`);
         setProvinceData(result2.data);
-        const result3 = await axios("http://localhost:5000/data/case/province");
+        const result3 = await axios(`${BASE_PATH}/data/case/province`);
         setProvinceCaseData(result3.data);
       } catch (error) {
         alert("Oops, terdapat sebuah masalah.");
