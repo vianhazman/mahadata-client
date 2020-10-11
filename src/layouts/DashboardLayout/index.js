@@ -12,6 +12,7 @@ import TimeLegend from "../../components/TimeLegend";
 import axios from "axios";
 import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
+import RankingContainer from "../../components/RankingContainer";
 
 const DashboardLayout = () => {
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -114,6 +115,7 @@ const DashboardLayout = () => {
           setIndex={setIndex}
         />
       )}
+      {!isLoading && <RankingContainer toggleData={toggleData} />}
       {!isLoading && <LegendContainer toggleData={toggleData} />}
       {!isLoading && (
         <TimeLegend date={data[index]?.date ?? ""} toggleData={toggleData} />

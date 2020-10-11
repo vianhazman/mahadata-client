@@ -2,7 +2,6 @@ import {
   ChartContainer,
   ChartRow,
   Charts,
-  EventChart,
   EventMarker,
   LineChart,
   Resizable,
@@ -11,6 +10,7 @@ import {
   BarChart,
 } from "react-timeseries-charts";
 import React, { useState } from "react";
+import EventChartModified from "../EventChartModified/index";
 import {
   getAnnotationColor,
   getAnnotationTimeSeries,
@@ -55,12 +55,12 @@ const TimeSeriesChart = ({
   const handleTrackerChanged = (t) => {
     if (t) {
       const e = mobility.atTime(t);
-      const c = provinceCase.atTime(t);
+      const c = toggle === "Provinsi" ? provinceCase.atTime(t) : "";
       // const eventTime = new Date(
       //   e.begin().getTime() + (e.end().getTime() - e.begin().getTime()) / 2
       // );
       const eventValue = e.get("ratio");
-      const caseValue = c.get("case");
+      const caseValue = toggle === "Provinsi" ? c.get("case") : "";
       setTracker({
         value: eventValue.toFixed(2),
         event: e,
@@ -85,7 +85,7 @@ const TimeSeriesChart = ({
       >
         <ChartRow height="35">
           <Charts>
-            <EventChart
+            <EventChartModified
               series={rangeAnnotation}
               style={getAnnotationColor}
               label={(e) => e.get("title")}
@@ -94,7 +94,7 @@ const TimeSeriesChart = ({
         </ChartRow>
         <ChartRow height="35">
           <Charts>
-            <EventChart
+            <EventChartModified
               series={eventAnnotation}
               style={getAnnotationColor}
               label={(e) => e.get("title")}

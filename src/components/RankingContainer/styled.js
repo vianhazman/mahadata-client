@@ -1,9 +1,9 @@
 import { Paper, Box } from "@material-ui/core";
 import styled from "styled-components";
 
-export const StyledWrapper = styled(Paper)`
+export const StyledWrapperRanking = styled(Paper)`
   position: absolute;
-  bottom: 0;
+  top: 15%;
   right: 0;
   padding: 1% 1% 1% 1%;
   margin: 2% 2% 2% 2%;
@@ -12,9 +12,9 @@ export const StyledWrapper = styled(Paper)`
   ${({ isOpen }) =>
     isOpen &&
     `
-animation: show 0.3s linear;
+animation: showRanking 0.3s linear;
 animation-fill-mode: forwards;
-@keyframes show {
+@keyframes showRanking {
   0%   {height: 25px;}
  
   100% {height: 220px;}
@@ -30,9 +30,9 @@ export const WrapperBox = styled(Box)`
   height: 10px;
   h6 {
     margin: 0;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
   }
-  // margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 export const Color = styled(Box)`
   background-color: ${({ color }) => color};
@@ -53,7 +53,7 @@ export const WrapperTitle = styled(Box)`
     }
   }
 `;
-export const WrapperLegend = styled.div`
+export const WrapperRanking = styled.div`
   ${({ isOpen }) =>
     isOpen &&
     `
@@ -68,4 +68,16 @@ export const WrapperLegend = styled.div`
 
   `}
   ${({ isOpen }) => !isOpen && "opacity:0"};
+  h5 {
+    margin-bottom: 0.2rem;
+  }
+  ol {
+    padding-left: 1rem;
+    margin-top: 0.3rem;
+  }
+  li {
+    font-weight: normal;
+    font-size: 0.75rem;
+    margin: 0.2rem;
+  }
 `;

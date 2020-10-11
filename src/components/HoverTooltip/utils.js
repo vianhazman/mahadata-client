@@ -7,8 +7,8 @@ export const getChangeCaption = (hoverInfo, heatData, toggle, toggleData) => {
   const toggleType = toggleData === "Mobilitas" ? "change" : "ratio";
   const isDistrict = toggle === TOGGLE.CITY;
   const isProvince = toggle === TOGGLE.PROVINCE;
-  const isMobility = toggleData === "Mobilitas";
-  const isRatio = toggleData === "Ratio";
+  const isMobility = toggleData === TOGGLE.MOBILITY;
+  const isRatio = toggleData === TOGGLE.RATIO;
   const district = heatData.data[hoverInfo.object.properties.kab];
   const province = heatData.data[hoverInfo.object.properties.Propinsi];
   if (
