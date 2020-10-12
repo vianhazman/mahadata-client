@@ -62,12 +62,11 @@ export const getCasesChartTimeSeries = (data, selectedRegion) => {
     if (keyA > keyB) return 1;
     return 0;
   });
-
   return new TimeSeries({
     name: "Kasus",
-    columns: ["time", "case"],
+    columns: ["index", "case"],
     points: data.map((data) => [
-      new Date(data.date).setHours(0, 0, 0, 0),
+      Index.getIndexString("24h", new Date(data.date)),
       parseInt(data.data[selectedRegion].replace(",", "")),
     ]),
   });

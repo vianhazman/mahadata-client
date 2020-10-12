@@ -34,7 +34,6 @@ const TimeSeriesChart = ({
     toggle === "Provinsi"
       ? getCasesChartTimeSeries(provinceCaseData, selectedRegion)
       : "";
-
   const rangeAnnotation = getAnnotationTimeSeries(
     Annotation,
     "Annotations",
@@ -112,7 +111,7 @@ const TimeSeriesChart = ({
               type="linear"
             />
             <Charts>
-              <LineChart
+              <BarChart
                 axis="case"
                 columns={["case"]}
                 series={provinceCase}
