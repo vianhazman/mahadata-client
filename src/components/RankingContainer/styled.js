@@ -17,7 +17,7 @@ animation-fill-mode: forwards;
 @keyframes showRanking {
   0%   {height: 25px;}
  
-  100% {height: 220px;}
+  100% {height: 250px;}
 }`}
   ${({ isOpen }) => !isOpen && "height:25px;"};
 `;

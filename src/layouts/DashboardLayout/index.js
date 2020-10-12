@@ -24,6 +24,9 @@ const DashboardLayout = () => {
   const [districtData, setDistrictData] = useState([]);
   const [provinceData, setProvinceData] = useState([]);
   const [provinceCaseData, setProvinceCaseData] = useState([]);
+  const [rankDistrictData, setRankDistrictData] = useState([]);
+  const [rankProvinceData, setRankProvinceData] = useState([]);
+
   const style = {
     position: "fixed",
     top: "50%",
@@ -46,6 +49,10 @@ const DashboardLayout = () => {
         setProvinceData(result2.data);
         const result3 = await axios(`${BASE_PATH}/data/case/province`);
         setProvinceCaseData(result3.data);
+        const rankDistrict = await axios(`${BASE_PATH}/data/rank/district`);
+        setRankDistrictData(rankDistrict.data);
+        const rankProvince = await axios(`${BASE_PATH}/data/rank/province`);
+        setRankProvinceData(rankProvince.data);
       } catch (error) {
         alert("Oops, terdapat sebuah masalah.");
       } finally {
@@ -115,7 +122,15 @@ const DashboardLayout = () => {
           setIndex={setIndex}
         />
       )}
-      {!isLoading && <RankingContainer toggleData={toggleData} />}
+      {!isLoading && (
+        <RankingContainer
+          toggle={toggle}
+          toggleData={toggleData}
+          districtRankData={rankDistrictData}
+          provinceRankData={rankProvinceData}
+          index={index}
+        />
+      )}
       {!isLoading && <LegendContainer toggleData={toggleData} />}
       {!isLoading && (
         <TimeLegend date={data[index]?.date ?? ""} toggleData={toggleData} />

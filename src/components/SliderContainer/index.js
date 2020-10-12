@@ -12,7 +12,6 @@ const SliderContainer = ({
   toggleData,
   provinceCaseData,
 }) => {
-  console.log(toggleData);
   return (
     <StyledWrapper isOpen={selectedRegion}>
       {selectedRegion && (
