@@ -1,13 +1,27 @@
 import { StyledWrapperRanking, WrapperTitle, WrapperRanking } from "./styled";
-
-import React, { useState } from "react";
+import { TOGGLE } from "../../constants/MapConstants";
+import React, { useState, useEffect } from "react";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-const RankingContainer = ({ toggleData }) => {
+const RankingContainer = ({
+  toggle,
+  toggleData,
+  provinceRankData,
+  districtRankData,
+  index,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  // let toggleLegend =
-  //   toggleData === "Mobilitas" ? LEGEND_MOBILITY : LEGEND_RATIO;
+  const [isLoading, setIsLoading] = useState(true);
+  const data = toggle === TOGGLE.CITY ? districtRankData : provinceRankData;
+  const type = toggleData === TOGGLE.MOBILITY ? "change" : "ratio";
+
+  useEffect(() => {
+    if (provinceRankData.length > 0 && districtRankData.length > 0) {
+      setIsLoading(false);
+    }
+  }, [provinceRankData, districtRankData]);
+
   return (
     <StyledWrapperRanking isOpen={isOpen}>
       <WrapperTitle>
@@ -18,24 +32,32 @@ const RankingContainer = ({ toggleData }) => {
           <ExpandMoreIcon onClick={() => setIsOpen(true)} />
         )}
       </WrapperTitle>
-      <WrapperRanking isOpen={isOpen}>
-        <div className="highest">
-          <h5>Tertinggi</h5>
-          <ol>
-            <li>DKI Jakarta - 30.00%</li>
-            <li>DKI Jakarta - 30.00%</li>
-            <li>DKI Jakarta - 30.00%</li>
-          </ol>
-        </div>
-        <div className="lowest">
-          <h5>Terendah</h5>
-          <ol>
-            <li>Banten - 5.22%</li>
-            <li>Banten - 5.22%</li>
-            <li>Banten - 5.22%</li>
-          </ol>
-        </div>
-      </WrapperRanking>
+      {}
+
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <WrapperRanking isOpen={isOpen}>
+          <div className="highest">
+            <h5>Tertinggi</h5>
+            <ol>
+              {data[index][type].top.map((el, idx) => {
+                const name = Object.keys(el)[0];
+                return <li key={idx}>{`${name} ${el[name]}%`}</li>;
+              })}
+            </ol>
+          </div>
+          <div className="lowest">
+            <h5>Terendah</h5>
+            <ol>
+              {data[index][type].bottom.map((el, idx) => {
+                const name = Object.keys(el)[0];
+                return <li key={idx}>{`${name} ${el[name]}%`}</li>;
+              })}
+            </ol>
+          </div>
+        </WrapperRanking>
+      )}
     </StyledWrapperRanking>
   );
 };
