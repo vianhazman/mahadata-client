@@ -1,4 +1,4 @@
-import { TimeRange, TimeRangeEvent, TimeSeries, Index } from "pondjs";
+import { Index, TimeRange, TimeRangeEvent, TimeSeries } from "pondjs";
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 
@@ -10,7 +10,10 @@ export const getAnnotationTimeSeries = (
 ) => {
   let events = [];
   try {
-    data = data[selectedRegion].filter((x) => x.type === type);
+    console.log(data);
+    data = data
+      .filter((x) => x.areaName === selectedRegion)
+      .filter((x) => x.eventType === type);
     events = data.map(
       ({ startTime, endTime, ...data }) =>
         new TimeRangeEvent(

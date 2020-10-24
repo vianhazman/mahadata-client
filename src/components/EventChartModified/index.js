@@ -1,8 +1,8 @@
+// import PropTypes from "prop-types";
+import { Event } from "pondjs";
+import React from "react";
 import _ from "underscore";
 import merge from "merge";
-import React from "react";
-// import PropTypes from "prop-types";
-// import { TimeSeries, Event } from "pondjs";
 
 export default class EventChart extends React.Component {
   constructor(props) {
@@ -58,10 +58,12 @@ export default class EventChart extends React.Component {
         scale(end) <= this.props.width ? scale(end) : this.props.width;
 
       const transform = `translate(${beginPos},0)`;
-      const isHover = true;
+      const isHover = this.state.hover
+        ? Event.is(event, this.state.hover)
+        : false;
 
       let state;
-      if (isHover) {
+      if (isHover || this.props.isHover) {
         state = "hover";
       } else {
         state = "normal";
@@ -95,7 +97,7 @@ export default class EventChart extends React.Component {
       };
 
       let text = null;
-      if (isHover) {
+      if (isHover || this.props.isHover) {
         text = (
           <g>
             <rect
@@ -103,7 +105,7 @@ export default class EventChart extends React.Component {
               x={x}
               y={y}
               width={hoverMarkerWidth}
-              height={height + 4}
+              height={height}
               style={merge(true, barNormalStyle, { pointerEvents: "none" })}
             />
             <text
@@ -152,4 +154,5 @@ EventChart.defaultProps = {
   textOffsetX: 0,
   textOffsetY: 0,
   hoverMarkerWidth: 5,
+  isHover: false,
 };

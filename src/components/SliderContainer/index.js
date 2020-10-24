@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+
 import { StyledWrapper } from "./styled";
 import TimeSeriesChart from "../TimeSeriesChart";
 import TimeSlider from "../TimeSlider";
@@ -11,6 +12,7 @@ const SliderContainer = ({
   toggle,
   toggleData,
   provinceCaseData,
+  annotations,
 }) => {
   return (
     <StyledWrapper isOpen={selectedRegion}>
@@ -25,6 +27,7 @@ const SliderContainer = ({
             toggle={toggle}
             provinceCaseData={provinceCaseData}
             selectedRegion={selectedRegion}
+            annotations={annotations}
           ></TimeSeriesChart>
         </Fragment>
       )}

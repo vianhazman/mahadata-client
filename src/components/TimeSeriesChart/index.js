@@ -1,4 +1,6 @@
 import {
+  BarChart,
+  Baseline,
   ChartContainer,
   ChartRow,
   Charts,
@@ -6,21 +8,18 @@ import {
   LineChart,
   Resizable,
   YAxis,
-  Baseline,
-  BarChart,
 } from "react-timeseries-charts";
 import React, { useState } from "react";
-import EventChartModified from "../EventChartModified/index";
 import {
+  baselineStyle,
   getAnnotationColor,
   getAnnotationTimeSeries,
-  getChartTimeSeries,
   getCasesChartTimeSeries,
-  baselineStyle,
+  getChartTimeSeries,
 } from "./utils";
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
-import Annotation from "../../services/HeatMap/annotation";
+import EventChartModified from "../EventChartModified/index";
 
 const TimeSeriesChart = ({
   data,
@@ -28,6 +27,7 @@ const TimeSeriesChart = ({
   toggleData,
   toggle,
   provinceCaseData,
+  annotations,
 }) => {
   const mobility = getChartTimeSeries(data, selectedRegion, toggleData);
   const provinceCase =
@@ -35,17 +35,17 @@ const TimeSeriesChart = ({
       ? getCasesChartTimeSeries(provinceCaseData, selectedRegion)
       : "";
   const rangeAnnotation = getAnnotationTimeSeries(
-    Annotation,
+    annotations,
     "Annotations",
     ANNOTATION_TYPE.RANGE,
     selectedRegion
   );
 
   const eventAnnotation = getAnnotationTimeSeries(
-    Annotation,
+    annotations,
     "Annotations",
     ANNOTATION_TYPE.EVENT,
-    "Global"
+    "GLOBAL"
   );
 
   const [tracker, setTracker] = useState({ value: null, event: null });
@@ -82,21 +82,24 @@ const TimeSeriesChart = ({
         showGrid={true}
         showGridPosition="under"
       >
-        <ChartRow height="35">
+        <ChartRow height="30">
           <Charts>
             <EventChartModified
               series={rangeAnnotation}
               style={getAnnotationColor}
               label={(e) => e.get("title")}
+              isHover={true}
+              size={20}
             />
           </Charts>
         </ChartRow>
-        <ChartRow height="35">
+        <ChartRow height="30">
           <Charts>
             <EventChartModified
               series={eventAnnotation}
               style={getAnnotationColor}
               label={(e) => e.get("title")}
+              size={20}
             />
           </Charts>
         </ChartRow>
@@ -104,13 +107,24 @@ const TimeSeriesChart = ({
           <ChartRow height="80">
             <YAxis
               id="case"
-              label={"Kasus"}
-              format=".2f"
+              label={"Kasus (%)"}
+              // format=".2f"
               min={provinceCase.min("case")}
               max={provinceCase.max("case")}
               type="linear"
             />
             <Charts>
+              {/* <EventChartModified
+                series={rangeAnnotation}
+                style={getAnnotationColor}
+                label={(e) => e.get("title")}
+                isHover={true}
+              />
+              <EventChartModified
+                series={eventAnnotation}
+                style={getAnnotationColor}
+                label={(e) => e.get("title")}
+              /> */}
               <BarChart
                 axis="case"
                 columns={["case"]}
@@ -137,7 +151,7 @@ const TimeSeriesChart = ({
         <ChartRow height="80">
           <YAxis
             id="mobility"
-            label={toggleData + " %"}
+            label={toggleData + " (%)"}
             min={mobility.min("ratio")}
             max={mobility.max("ratio")}
             type="linear"
