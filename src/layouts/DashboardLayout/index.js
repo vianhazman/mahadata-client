@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import { BASE_PATH } from "../../constants/Api";
+import EventService from "../../services/EventService";
 import FilterContainer from "../../components/FilterContainer";
 import LayeredMap from "../../components/LayeredMap";
 import LegendContainer from "../../components/LegendContainer";
 import PulseLoader from "react-spinners/PulseLoader";
+import RankingContainer from "../../components/RankingContainer";
 import SliderContainer from "../../components/SliderContainer";
 import { StyledMapLayoutContainer } from "./styled";
 import { TOGGLE } from "../../constants/MapConstants";
@@ -12,7 +14,6 @@ import TimeLegend from "../../components/TimeLegend";
 import axios from "axios";
 import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
-import RankingContainer from "../../components/RankingContainer";
 
 const DashboardLayout = () => {
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -26,6 +27,7 @@ const DashboardLayout = () => {
   const [provinceCaseData, setProvinceCaseData] = useState([]);
   const [rankDistrictData, setRankDistrictData] = useState([]);
   const [rankProvinceData, setRankProvinceData] = useState([]);
+  const [annotations, setAnnotations] = useState([]);
 
   const style = {
     position: "fixed",
@@ -53,6 +55,9 @@ const DashboardLayout = () => {
         setRankDistrictData(rankDistrict.data);
         const rankProvince = await axios(`${BASE_PATH}/data/rank/province`);
         setRankProvinceData(rankProvince.data);
+        const eventData = new EventService();
+        const event = await eventData.get(0);
+        setAnnotations(event);
       } catch (error) {
         alert("Oops, terdapat sebuah masalah.");
       } finally {
@@ -119,6 +124,7 @@ const DashboardLayout = () => {
           provinceCaseData={provinceCaseData}
           index={index}
           setIndex={setIndex}
+          annotations={annotations}
         />
       )}
       {!isLoading && (
