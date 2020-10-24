@@ -75,7 +75,6 @@ const DashboardLayout = () => {
         break;
     }
   }, [toggle, districtData, provinceData]);
-
   return (
     <div>
       <div style={style}>

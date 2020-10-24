@@ -101,7 +101,7 @@ const TimeSeriesChart = ({
           </Charts>
         </ChartRow>
         {toggle === "Provinsi" ? (
-          <ChartRow>
+          <ChartRow height="80">
             <YAxis
               id="case"
               label={"Kasus"}
@@ -134,11 +134,10 @@ const TimeSeriesChart = ({
           ""
         )}
 
-        <ChartRow>
+        <ChartRow height="80">
           <YAxis
             id="mobility"
-            label={toggleData}
-            format=".2f"
+            label={toggleData + " %"}
             min={mobility.min("ratio")}
             max={mobility.max("ratio")}
             type="linear"
