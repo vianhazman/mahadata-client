@@ -114,17 +114,6 @@ const TimeSeriesChart = ({
               type="linear"
             />
             <Charts>
-              {/* <EventChartModified
-                series={rangeAnnotation}
-                style={getAnnotationColor}
-                label={(e) => e.get("title")}
-                isHover={true}
-              />
-              <EventChartModified
-                series={eventAnnotation}
-                style={getAnnotationColor}
-                label={(e) => e.get("title")}
-              /> */}
               <BarChart
                 axis="case"
                 columns={["case"]}
@@ -157,6 +146,13 @@ const TimeSeriesChart = ({
             type="linear"
           />
           <Charts>
+            <Baseline
+              axis="mobility"
+              style={baselineStyle}
+              value={0}
+              label={`${toggleData} Februari 2020`}
+              position="right"
+            />
             {toggleData === "Mobilitas" ? (
               <LineChart
                 axis="mobility"
@@ -173,13 +169,6 @@ const TimeSeriesChart = ({
               />
             )}
 
-            <Baseline
-              axis="mobility"
-              style={baselineStyle}
-              value={0}
-              label={`${toggleData} sebelum pandemi`}
-              position="right"
-            />
             <EventMarker
               type="flag"
               axis="mobility"

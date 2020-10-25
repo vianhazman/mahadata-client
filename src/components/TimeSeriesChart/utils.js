@@ -77,22 +77,37 @@ export const getCasesChartTimeSeries = (data, selectedRegion) => {
 
 export const getAnnotationColor = (event, state) => {
   const color =
-    event.get("type") === ANNOTATION_TYPE.EVENT ? "#998ec3" : "#f1a340";
+    event.get("eventType") === ANNOTATION_TYPE.EVENT ? "#ff0000" : "#f1a340";
   return {
     fill: color,
     opacity: 1,
   };
 };
 
+export const yAxisStyle = {
+  line: {
+    stroke: "rgb(0, 0, 0)",
+    strokeWidth: 1,
+    opacity: 0.6,
+    strokeDasharray: "none",
+  },
+  label: {
+    fill: "rgb(0, 0, 0)",
+    opacity: 1,
+    fontWeight: "bold",
+  },
+};
+
 export const baselineStyle = {
   line: {
-    stroke: "rgb(153, 142, 195)",
+    stroke: "rgb(0, 0, 0)",
     strokeWidth: 1,
     opacity: 0.4,
     strokeDasharray: "none",
   },
   label: {
-    fill: "rgb(153, 142, 195)",
+    fill: "rgb(0, 0, 0)",
+    opacity: 1,
     fontWeight: "bold",
   },
 };
