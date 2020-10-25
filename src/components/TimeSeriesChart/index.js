@@ -107,7 +107,7 @@ const TimeSeriesChart = ({
           <ChartRow height="80">
             <YAxis
               id="case"
-              label={"Kasus (%)"}
+              label={"Kasus Harian"}
               // format=".2f"
               min={provinceCase.min("case")}
               max={provinceCase.max("case")}
