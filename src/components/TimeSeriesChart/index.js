@@ -20,6 +20,7 @@ import {
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 import EventChartModified from "../EventChartModified/index";
+import { WrapperTimeSeriesChart } from "./styles";
 
 const TimeSeriesChart = ({
   data,
@@ -74,115 +75,117 @@ const TimeSeriesChart = ({
     }
   };
   return (
-    <Resizable>
-      <ChartContainer
-        timeRange={mobility.range()}
-        // timeAxisTickCount={mobility.count()}
-        onTrackerChanged={handleTrackerChanged}
-        showGrid={true}
-        showGridPosition="under"
-      >
-        <ChartRow height="30">
-          <Charts>
-            <EventChartModified
-              series={rangeAnnotation}
-              style={getAnnotationColor}
-              label={(e) => e.get("title")}
-              isHover={true}
-              size={20}
-            />
-          </Charts>
-        </ChartRow>
-        <ChartRow height="30">
-          <Charts>
-            <EventChartModified
-              series={eventAnnotation}
-              style={getAnnotationColor}
-              label={(e) => e.get("title")}
-              size={20}
-            />
-          </Charts>
-        </ChartRow>
-        {toggle === "Provinsi" ? (
+    <WrapperTimeSeriesChart>
+      <Resizable>
+        <ChartContainer
+          timeRange={mobility.range()}
+          // timeAxisTickCount={mobility.count()}
+          onTrackerChanged={handleTrackerChanged}
+          showGrid={true}
+          showGridPosition="under"
+        >
+          <ChartRow height="30">
+            <Charts>
+              <EventChartModified
+                series={rangeAnnotation}
+                style={getAnnotationColor}
+                label={(e) => e.get("title")}
+                isHover={true}
+                size={20}
+              />
+            </Charts>
+          </ChartRow>
+          <ChartRow height="30">
+            <Charts>
+              <EventChartModified
+                series={eventAnnotation}
+                style={getAnnotationColor}
+                label={(e) => e.get("title")}
+                size={20}
+              />
+            </Charts>
+          </ChartRow>
+          {toggle === "Provinsi" ? (
+            <ChartRow height="80">
+              <YAxis
+                id="case"
+                label={"Kasus (%)"}
+                // format=".2f"
+                min={provinceCase.min("case")}
+                max={provinceCase.max("case")}
+                type="linear"
+              />
+              <Charts>
+                <BarChart
+                  axis="case"
+                  columns={["case"]}
+                  series={provinceCase}
+                  onMouseNear={(p) => this.handleMouseNear(p)}
+                />
+
+                <EventMarker
+                  type="flag"
+                  axis="case"
+                  event={caseTracker.event}
+                  infoTimeFormat="%d-%m-%Y"
+                  info={[{ label: "Kasus", value: `${caseTracker.value}` }]}
+                  column="case"
+                  markerLabelAlign="left"
+                  markerRadius={3}
+                />
+              </Charts>
+            </ChartRow>
+          ) : (
+            ""
+          )}
+
           <ChartRow height="80">
             <YAxis
-              id="case"
-              label={"Kasus (%)"}
-              // format=".2f"
-              min={provinceCase.min("case")}
-              max={provinceCase.max("case")}
+              id="mobility"
+              label={toggleData + " (%)"}
+              min={mobility.min("ratio")}
+              max={mobility.max("ratio")}
               type="linear"
             />
             <Charts>
-              <BarChart
-                axis="case"
-                columns={["case"]}
-                series={provinceCase}
-                onMouseNear={(p) => this.handleMouseNear(p)}
+              <Baseline
+                axis="mobility"
+                style={baselineStyle}
+                value={0}
+                label={`${toggleData} Februari 2020`}
+                position="right"
               />
+              {toggleData === "Mobilitas" ? (
+                <LineChart
+                  axis="mobility"
+                  columns={["ratio"]}
+                  series={mobility}
+                  onMouseNear={(p) => this.handleMouseNear(p)}
+                />
+              ) : (
+                <BarChart
+                  axis="mobility"
+                  columns={["ratio"]}
+                  series={mobility}
+                  onMouseNear={(p) => this.handleMouseNear(p)}
+                />
+              )}
 
               <EventMarker
                 type="flag"
-                axis="case"
-                event={caseTracker.event}
+                axis="mobility"
+                event={tracker.event}
                 infoTimeFormat="%d-%m-%Y"
-                info={[{ label: "Kasus", value: `${caseTracker.value}` }]}
-                column="case"
+                info={[{ label: toggleData, value: `${tracker.value}%` }]}
+                column="ratio"
                 markerLabelAlign="left"
                 markerRadius={3}
               />
             </Charts>
           </ChartRow>
-        ) : (
-          ""
-        )}
-
-        <ChartRow height="80">
-          <YAxis
-            id="mobility"
-            label={toggleData + " (%)"}
-            min={mobility.min("ratio")}
-            max={mobility.max("ratio")}
-            type="linear"
-          />
-          <Charts>
-            <Baseline
-              axis="mobility"
-              style={baselineStyle}
-              value={0}
-              label={`${toggleData} Februari 2020`}
-              position="right"
-            />
-            {toggleData === "Mobilitas" ? (
-              <LineChart
-                axis="mobility"
-                columns={["ratio"]}
-                series={mobility}
-                onMouseNear={(p) => this.handleMouseNear(p)}
-              />
-            ) : (
-              <BarChart
-                axis="mobility"
-                columns={["ratio"]}
-                series={mobility}
-                onMouseNear={(p) => this.handleMouseNear(p)}
-              />
-            )}
-
-            <EventMarker
-              type="flag"
-              axis="mobility"
-              event={tracker.event}
-              infoTimeFormat="%d-%m-%Y"
-              info={[{ label: toggleData, value: `${tracker.value}%` }]}
-              column="ratio"
-              markerLabelAlign="left"
-              markerRadius={3}
-            />
-          </Charts>
-        </ChartRow>
-      </ChartContainer>
-    </Resizable>
+        </ChartContainer>
+      </Resizable>
+    </WrapperTimeSeriesChart>
   );
 };
 
