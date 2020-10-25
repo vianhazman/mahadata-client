@@ -63,7 +63,7 @@ const LayeredMap = ({
       id: "provinces",
       data: data,
       pickable: true,
-      opacity: 1,
+      opacity: 0.5,
       stroked: true,
       filled: true,
       lineWidthScale: 20,
