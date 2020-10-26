@@ -74,6 +74,8 @@ const TimeSeriesChart = ({
       setCaseTracker({ value: null, event: null });
     }
   };
+  console.log("ct", caseTracker);
+  console.log("t", tracker);
   return (
     <WrapperTimeSeriesChart>
       <Resizable>
@@ -132,6 +134,19 @@ const TimeSeriesChart = ({
                   column="case"
                   markerLabelAlign="left"
                   markerRadius={3}
+                  infoStyle={{
+                    box: {
+                      fill: "white",
+                      stroke: "#999",
+                      pointerEvents: "none",
+                      opacity: 1,
+                      color: "black",
+                    },
+                    label: {
+                      fill: "unset",
+                    },
+                  }}
+                  infoWidth={120}
                 />
               </Charts>
             </ChartRow>
@@ -180,6 +195,19 @@ const TimeSeriesChart = ({
                 column="ratio"
                 markerLabelAlign="left"
                 markerRadius={3}
+                infoStyle={{
+                  box: {
+                    fill: "white",
+                    stroke: "#999",
+                    pointerEvents: "none",
+                    opacity: 1,
+                    color: "black",
+                  },
+                  label: {
+                    fill: "unset",
+                  },
+                }}
+                infoWidth={120}
               />
             </Charts>
           </ChartRow>
