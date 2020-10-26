@@ -8,9 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     marginTop: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
     zIndex: 9,
+    minWidth: "100%",
   },
   Autocomplete: {
     zIndex: 9,
@@ -19,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 const RegionFilter = ({ selectedRegion, setSelectedRegion, title, data }) => {
   const classes = useStyles();
-  console.log(selectedRegion);
   return (
     <div>
       <FormControl className={classes.formControl}>
@@ -32,7 +30,7 @@ const RegionFilter = ({ selectedRegion, setSelectedRegion, title, data }) => {
             setSelectedRegion(newValue);
           }}
           getOptionLabel={(option) => option}
-          style={{ width: 300 }}
+          style={{ width: "80%" }}
           renderInput={(params) => (
             <TextField {...params} label={title} variant="outlined" />
           )}
