@@ -81,8 +81,9 @@ const TimeSeriesChart = ({
         onTrackerChanged={handleTrackerChanged}
         showGrid={true}
         showGridPosition="under"
+        style={{ position: "absolute" }}
       >
-        <ChartRow height="30">
+        <ChartRow height="25">
           <Charts>
             <EventChartModified
               series={rangeAnnotation}
@@ -93,7 +94,7 @@ const TimeSeriesChart = ({
             />
           </Charts>
         </ChartRow>
-        <ChartRow height="30">
+        <ChartRow height="25">
           <Charts>
             <EventChartModified
               series={eventAnnotation}

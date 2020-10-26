@@ -1,12 +1,9 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-
-import FormControl from "@material-ui/core/FormControl";
-
-import TextField from "@material-ui/core/TextField";
-
-import PropTypes from "prop-types";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import FormControl from "@material-ui/core/FormControl";
+import PropTypes from "prop-types";
+import React from "react";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -28,6 +25,7 @@ const RegionFilter = ({ selectedRegion, setSelectedRegion, title, data }) => {
       <FormControl className={classes.formControl}>
         <Autocomplete
           className={classes.Autocomplete}
+          size="small"
           options={data}
           value={selectedRegion}
           onChange={(event, newValue) => {

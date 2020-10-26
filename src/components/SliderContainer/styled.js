@@ -1,14 +1,10 @@
 import styled, { css } from "styled-components";
+
 import { Paper } from "@material-ui/core";
 
-export const StyledWrapper = styled(Paper)`
-  position: absolute;
-  bottom: 0;
+export const StyledWrapper = styled.div`
   padding: 1% 1% 1% 1%;
-  margin: 2% 2% 2% 2%;
-  width: 50vw;
   background-color: rgba(255, 255, 255, 0.75);
-
   .MuiSlider-thumb::after {
     position: absolute;
     height: 40px;
@@ -22,8 +18,5 @@ export const StyledWrapper = styled(Paper)`
       css`
         display: none;
       `}
-
-  .recharts-wrapper {
-    margin-bottom: -50px;
   }
 `;

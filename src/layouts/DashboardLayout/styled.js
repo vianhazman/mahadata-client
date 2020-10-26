@@ -7,6 +7,10 @@ export const StyledDashboardLayout = styled.div`
 `;
 
 export const StyledMapLayoutContainer = styled.div`
-  min-width: 1280px;
-  min-height: 720px;
+  width: 100%;
+  position: relative;
+`;
+
+export const LayoutWrapper = styled.div`
+  padding: 1% 1% 0% 1%;
 `;

@@ -1,14 +1,15 @@
+import { LayoutWrapper, StyledMapLayoutContainer } from "./styled";
 import React, { useEffect, useState } from "react";
 
 import { BASE_PATH } from "../../constants/Api";
 import EventService from "../../services/EventService";
 import FilterContainer from "../../components/FilterContainer";
+import Grid from "@material-ui/core/Grid";
 import LayeredMap from "../../components/LayeredMap";
 import LegendContainer from "../../components/LegendContainer";
 import PulseLoader from "react-spinners/PulseLoader";
 import RankingContainer from "../../components/RankingContainer";
 import SliderContainer from "../../components/SliderContainer";
-import { StyledMapLayoutContainer } from "./styled";
 import { TOGGLE } from "../../constants/MapConstants";
 import TimeLegend from "../../components/TimeLegend";
 import axios from "axios";
@@ -16,8 +17,8 @@ import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
 
 const DashboardLayout = () => {
-  const [selectedRegion, setSelectedRegion] = useState("");
-  const [toggle, setToggle] = useState(TOGGLE.CITY);
+  const [selectedRegion, setSelectedRegion] = useState();
+  const [toggle, setToggle] = useState(TOGGLE.PROVINCE);
   const [toggleData, setToggleData] = useState(TOGGLE.MOBILITY);
   const [index, setIndex] = useState(0);
   const [data, setData] = useState([]);
@@ -34,6 +35,10 @@ const DashboardLayout = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+  };
+
+  const containerStyle = {
+    maxHeight: "30%",
   };
 
   const resetSelected = () => {
@@ -81,66 +86,78 @@ const DashboardLayout = () => {
     }
   }, [toggle, districtData, provinceData]);
   return (
-    <div>
+    <LayoutWrapper>
       <div style={style}>
         <PulseLoader loading={isLoading} />
+        <h3>LLLLL</h3>
       </div>
-      {!isLoading && (
-        <StyledMapLayoutContainer>
-          <FilterContainer
-            selectedRegion={selectedRegion}
-            setSelectedRegion={setSelectedRegion}
-            data={
-              toggle === TOGGLE.CITY
-                ? districtGeo.map((x) =>
-                    x.properties.kab ? x.properties.kab : ""
-                  )
-                : provincesGeo.map((x) => x.properties.Propinsi)
-            }
-            toggle={toggle}
-            toggleData={toggleData}
-            setToggleData={setToggleData}
-            setToggle={setToggle}
-            resetSelected={resetSelected}
-          ></FilterContainer>
-          <LayeredMap
-            data={toggle === TOGGLE.CITY ? districtGeo : provincesGeo}
-            selectedRegion={selectedRegion}
-            setSelectedRegion={setSelectedRegion}
-            toggle={toggle}
-            toggleData={toggleData}
-            heatData={data[index]}
-            // If current date has no case send null instead
-            caseData={index >= 17 ? provinceCaseData[index - 17] : null}
-          ></LayeredMap>
-        </StyledMapLayoutContainer>
-      )}
-      {!isLoading && (
-        <SliderContainer
-          selectedRegion={selectedRegion}
-          data={data}
-          toggle={toggle}
-          toggleData={toggleData}
-          provinceCaseData={provinceCaseData}
-          index={index}
-          setIndex={setIndex}
-          annotations={annotations}
-        />
-      )}
-      {!isLoading && (
-        <RankingContainer
-          toggle={toggle}
-          toggleData={toggleData}
-          districtRankData={rankDistrictData}
-          provinceRankData={rankProvinceData}
-          index={index}
-        />
-      )}
-      {!isLoading && <LegendContainer toggleData={toggleData} />}
-      {!isLoading && (
+      <Grid container style={containerStyle}>
+        <Grid sm={3} xs={12}>
+          {!isLoading && (
+            <FilterContainer
+              selectedRegion={selectedRegion}
+              setSelectedRegion={setSelectedRegion}
+              data={
+                toggle === TOGGLE.CITY
+                  ? districtGeo.map((x) =>
+                      x.properties.kab ? x.properties.kab : ""
+                    )
+                  : provincesGeo.map((x) => x.properties.Propinsi)
+              }
+              toggle={toggle}
+              toggleData={toggleData}
+              setToggleData={setToggleData}
+              setToggle={setToggle}
+              resetSelected={resetSelected}
+            ></FilterContainer>
+          )}
+          {!isLoading && (
+            <RankingContainer
+              toggle={toggle}
+              toggleData={toggleData}
+              districtRankData={rankDistrictData}
+              provinceRankData={rankProvinceData}
+              index={index}
+            />
+          )}
+        </Grid>
+        <Grid sm={9} xs={12}>
+          {!isLoading && (
+            <StyledMapLayoutContainer>
+              {!isLoading && <LegendContainer toggleData={toggleData} />}
+              <LayeredMap
+                data={toggle === TOGGLE.CITY ? districtGeo : provincesGeo}
+                selectedRegion={selectedRegion}
+                setSelectedRegion={setSelectedRegion}
+                toggle={toggle}
+                toggleData={toggleData}
+                heatData={data[index]}
+                // If current date has no case send null instead
+                caseData={index >= 17 ? provinceCaseData[index - 17] : null}
+              ></LayeredMap>
+            </StyledMapLayoutContainer>
+          )}
+          {!isLoading && (
+            <SliderContainer
+              selectedRegion={selectedRegion}
+              data={data}
+              toggle={toggle}
+              toggleData={toggleData}
+              provinceCaseData={provinceCaseData}
+              index={index}
+              setIndex={setIndex}
+              annotations={annotations}
+            />
+          )}
+        </Grid>
+        <Grid xs={12}></Grid>
+      </Grid>
+
+      {/* {!isLoading && (
         <TimeLegend date={data[index]?.date ?? ""} toggleData={toggleData} />
-      )}
-    </div>
+        
+      )} */}
+    </LayoutWrapper>
   );
 };
 

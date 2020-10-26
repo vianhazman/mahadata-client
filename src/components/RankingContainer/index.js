@@ -1,8 +1,9 @@
-import { StyledWrapperRanking, WrapperTitle, WrapperRanking } from "./styled";
-import { TOGGLE } from "../../constants/MapConstants";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { StyledWrapperRanking, WrapperRanking, WrapperTitle } from "./styled";
+
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { TOGGLE } from "../../constants/MapConstants";
 
 const RankingContainer = ({
   toggle,
@@ -24,20 +25,15 @@ const RankingContainer = ({
 
   return (
     <StyledWrapperRanking isOpen={isOpen}>
-      <WrapperTitle>
-        <h3>Peringkat</h3>
-        {isOpen ? (
-          <ExpandLessIcon onClick={() => setIsOpen(false)} />
-        ) : (
-          <ExpandMoreIcon onClick={() => setIsOpen(true)} />
-        )}
-      </WrapperTitle>
-      {}
+      {/* <WrapperTitle>
+        <h4>Peringkat</h4>
+      </WrapperTitle> */}
 
       {isLoading ? (
         "Loading..."
       ) : (
         <WrapperRanking isOpen={isOpen}>
+          <h4>Peringkat</h4>
           <div className="highest">
             <h5>Tertinggi</h5>
             <ol>
@@ -58,6 +54,10 @@ const RankingContainer = ({
           </div>
         </WrapperRanking>
       )}
+      <h5 style={{ fontWeight: "normal" }}>
+        Data pergerakan diperoleh dari{" "}
+        <span style={{ fontWeight: "bold" }}>Facebook Data for Good</span>
+      </h5>
     </StyledWrapperRanking>
   );
 };

@@ -1,7 +1,9 @@
-import { Paper, Box } from "@material-ui/core";
+import { Box, Paper } from "@material-ui/core";
+
 import styled from "styled-components";
 
 export const StyledWrapper = styled(Paper)`
+  z-index: 10;
   position: absolute;
   bottom: 0;
   right: 0;

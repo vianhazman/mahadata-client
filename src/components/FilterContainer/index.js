@@ -77,9 +77,19 @@ const FilterContainer = ({
         </WrapperTitle>
         <img className="logo-tim" src={LogoTim} alt="Logo Tim Mahadata"></img>
       </WrapperHeader>
-
+      <div>
+        <p>
+          Peta menampilkan pergerakan masyarakat Indonesia di tingkat
+          kabupaten/kota dan provinsi serta penambahan harian kasus COVID-19 di
+          tingkat provinsi. Pergerakan dapat dilihat berupa (1) mobilitas
+          masyarakat dibandingkan pada bulan Februari, dan (2) persentase
+          penduduk yang patuh untuk di rumah saja.
+        </p>
+      </div>
+      <h5>Pilih tingkat agregasi</h5>
       <ToggleButtonGroup
         value={toggle}
+        size="small"
         exclusive
         onChange={onClickToggle}
         aria-label="text alignment"
@@ -105,12 +115,13 @@ const FilterContainer = ({
           {hoverObject.province && <HoverToggle type="province" />}
         </ToggleButton>
       </ToggleButtonGroup>
+      <h5>Pilih jenis data pergerakan</h5>
       <ToggleButtonGroup
         value={toggleData}
+        size="small"
         exclusive
         onChange={onClickToggleData}
         aria-label="text alignment"
-        style={{ marginLeft: "2rem" }}
       >
         <ToggleButton
           value={TOGGLE.MOBILITY}
@@ -133,16 +144,13 @@ const FilterContainer = ({
           {hoverObject.ratio && <HoverToggle type="ratio" />}
         </ToggleButton>
       </ToggleButtonGroup>
+      <br></br>
+      <h5>Pilih {toggle}</h5>
       <RegionFilter
         selectedRegion={selectedRegion}
         setSelectedRegion={setSelectedRegion}
         data={data}
-        title={toggle}
       ></RegionFilter>
-      <h5 style={{ fontWeight: "normal" }}>
-        Data pergerakan diperoleh dari{" "}
-        <span style={{ fontWeight: "bold" }}>Facebook Data for Good</span>
-      </h5>
     </StyledWrapper>
   );
 };

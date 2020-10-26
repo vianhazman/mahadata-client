@@ -1,20 +1,21 @@
 import Grid from "@material-ui/core/Grid";
+import { TOGGLE } from "../../constants/MapConstants";
 import styled from "styled-components";
 
 export const StyledContainer = styled(Grid)`
   .MuiSlider-root {
-    position: absolute;
     margin-left: 80px;
-    margin-top: 0;
-    width: calc((100% - 110px));
+    width: calc((100% - 10px));
   }
 
   .MuiSlider-thumb::after {
     position: absolute;
-    height: 120px;
+    height: ${({ toggle }) => (toggle === TOGGLE.CITY && "120px") || "200px"};
     width: 2px;
     border-radius: 0px;
-    margin-top: -100px;
+    margin-top: ${({ toggle }) =>
+      (toggle === TOGGLE.CITY && "-100px") || "-180px"};
+
     background-color: currentColor;
   }
 

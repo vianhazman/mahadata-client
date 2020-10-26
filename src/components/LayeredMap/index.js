@@ -84,7 +84,7 @@ const LayeredMap = ({
     }),
   ];
   return (
-    <StyledMapContainer>
+    <StyledMapContainer toggle={toggle} selectedRegion={selectedRegion}>
       {hoverInfo.object && (
         <HoverTooltip
           hoverInfo={hoverInfo}
@@ -96,8 +96,6 @@ const LayeredMap = ({
       )}
       <DeckGL
         initialViewState={initialViewState}
-        height="100%"
-        width="100%"
         controller={true}
         layers={layer}
       >

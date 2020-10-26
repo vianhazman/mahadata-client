@@ -18,9 +18,9 @@ const SliderContainer = ({
     <StyledWrapper isOpen={selectedRegion}>
       {selectedRegion && (
         <Fragment>
-          <h4>
-            Grafik {toggleData} di {selectedRegion}
-          </h4>
+          <h5>
+            Grafik {toggleData} di <b>{selectedRegion}</b>
+          </h5>
           <TimeSeriesChart
             toggleData={toggleData}
             data={data}
@@ -31,7 +31,12 @@ const SliderContainer = ({
           ></TimeSeriesChart>
         </Fragment>
       )}
-      <TimeSlider data={data} index={index} setIndex={setIndex}></TimeSlider>
+      <TimeSlider
+        data={data}
+        index={index}
+        setIndex={setIndex}
+        toggle={toggle}
+      ></TimeSlider>
     </StyledWrapper>
   );
 };

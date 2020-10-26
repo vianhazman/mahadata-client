@@ -7,7 +7,7 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import Slider from "@material-ui/core/Slider";
 import { StyledContainer } from "./styled";
 
-const TimeSlider = ({ data, index, setIndex }) => {
+const TimeSlider = ({ data, index, setIndex, toggle }) => {
   const [currentInterval, setCurrentInterval] = useState(0);
   const maxValue = data.length - 1;
 
@@ -39,21 +39,20 @@ const TimeSlider = ({ data, index, setIndex }) => {
   };
 
   return (
-    <StyledContainer container currentDate={data[index]?.date}>
-      <Grid item xs={1}>
-        <Button
-          variant="contained"
-          size="small"
-          color="secondary"
-          onClick={onButtonClick}
-        >
-          {currentInterval ? (
-            <PauseIcon></PauseIcon>
-          ) : (
-            <PlayArrowIcon></PlayArrowIcon>
-          )}
-        </Button>
-      </Grid>
+    <StyledContainer container toggle={toggle} currentDate={data[index]?.date}>
+      <Button
+        variant="contained"
+        size="small"
+        color="secondary"
+        onClick={onButtonClick}
+        style={{ position: "absolute" }}
+      >
+        {currentInterval ? (
+          <PauseIcon></PauseIcon>
+        ) : (
+          <PlayArrowIcon></PlayArrowIcon>
+        )}
+      </Button>
       <Slider
         className="slider"
         aria-labelledby="label"
@@ -63,7 +62,6 @@ const TimeSlider = ({ data, index, setIndex }) => {
         value={index}
         onChange={handleChange}
       />
-      <Grid item xs={11}></Grid>
     </StyledContainer>
   );
 };
