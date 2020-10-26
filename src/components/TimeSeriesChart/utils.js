@@ -10,7 +10,6 @@ export const getAnnotationTimeSeries = (
 ) => {
   let events = [];
   try {
-    console.log(data);
     data = data
       .filter((x) => x.areaName === selectedRegion)
       .filter((x) => x.eventType === type);
@@ -65,7 +64,6 @@ export const getCasesChartTimeSeries = (data, selectedRegion) => {
     if (keyA > keyB) return 1;
     return 0;
   });
-  console.log(selectedRegion);
   return new TimeSeries({
     name: "Kasus",
     columns: ["index", "case"],

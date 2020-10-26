@@ -1,6 +1,7 @@
+import { Box, Typography } from "@material-ui/core";
+
 import React from "react";
 import { Wrapper } from "./styled";
-import { Typography, Box } from "@material-ui/core";
 import { format } from "date-fns";
 import { id } from "date-fns/esm/locale";
 
@@ -13,12 +14,7 @@ const TimeLegend = ({ date, toggleData, ...props }) => {
 
   return (
     <Wrapper>
-      <Typography variant="caption">
-        Peta menunjukan sebaran {toggleData.toLowerCase()} pada tanggal
-      </Typography>
-      <Typography variant="h5">
-        <Box fontWeight="bold">{dateParsed}</Box>
-      </Typography>
+      <h5>{dateParsed}</h5>
     </Wrapper>
   );
 };

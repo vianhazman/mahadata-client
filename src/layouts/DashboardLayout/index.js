@@ -17,7 +17,7 @@ import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
 
 const DashboardLayout = () => {
-  const [selectedRegion, setSelectedRegion] = useState();
+  const [selectedRegion, setSelectedRegion] = useState("");
   const [toggle, setToggle] = useState(TOGGLE.PROVINCE);
   const [toggleData, setToggleData] = useState(TOGGLE.MOBILITY);
   const [index, setIndex] = useState(0);
@@ -89,7 +89,6 @@ const DashboardLayout = () => {
     <LayoutWrapper>
       <div style={style}>
         <PulseLoader loading={isLoading} />
-        <h3>LLLLL</h3>
       </div>
       <Grid container style={containerStyle}>
         <Grid sm={3} xs={12}>
@@ -152,11 +151,6 @@ const DashboardLayout = () => {
         </Grid>
         <Grid xs={12}></Grid>
       </Grid>
-
-      {/* {!isLoading && (
-        <TimeLegend date={data[index]?.date ?? ""} toggleData={toggleData} />
-        
-      )} */}
     </LayoutWrapper>
   );
 };

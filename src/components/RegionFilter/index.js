@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RegionFilter = ({ selectedRegion, setSelectedRegion, title, data }) => {
   const classes = useStyles();
-
+  console.log(selectedRegion);
   return (
     <div>
       <FormControl className={classes.formControl}>
