@@ -1,13 +1,15 @@
 import { DeckGL, FlyToInterpolator } from "deck.gl";
 import { MAP_STYLE, MAP_TOKEN, TOGGLE } from "../../constants/MapConstants";
 import React, { useCallback, useEffect, useState } from "react";
-import { getGeoJsonProperties, randomRgba } from "./utils";
+import { getGeoJsonProperties, getSelectedLine, randomRgba } from "./utils";
 
 import { GeoJsonLayer } from "@deck.gl/layers";
 import HoverTooltip from "../HoverTooltip";
 import { INITIAL_VIEW_STATE } from "../../constants/MapConstants";
 import { StaticMap } from "react-map-gl";
 import { StyledMapContainer } from "./styled";
+import districtIndex from "../../services/GeoJson/districtIndex";
+import provincesIndex from "../../services/GeoJson/provinceIndex";
 
 const LayeredMap = ({
   data,
@@ -19,13 +21,38 @@ const LayeredMap = ({
   caseData,
 }) => {
   const [hoverInfo, setHoverInfo] = useState({});
+  const [selectedInfo, setSelectedInfo] = useState({});
   const [initialViewState, setInitialViewState] = useState(INITIAL_VIEW_STATE);
+
+  const getRegionName = useCallback((obj, setFunction, toggle) => {
+    if (obj.object) {
+      if (toggle === TOGGLE.CITY) {
+        setFunction(obj.object.properties.kab);
+      } else {
+        setFunction(obj.object.properties.Propinsi);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (!selectedRegion) {
       setInitialViewState(INITIAL_VIEW_STATE);
+      setSelectedInfo({});
+    } else {
+      try {
+        var obj =
+          toggle === TOGGLE.CITY
+            ? data[districtIndex[selectedRegion]]
+            : data[provincesIndex[selectedRegion]];
+        var coordinates =
+          obj.geometry.type === "MultiPolygon"
+            ? obj.geometry.coordinates[0][0][0]
+            : obj.geometry.coordinates[0][0];
+        goToPolygon(coordinates, setInitialViewState);
+        getGeoJsonProperties(obj, setSelectedInfo);
+      } catch (error) {}
     }
-  }, [setInitialViewState, selectedRegion]);
+  }, [setInitialViewState, selectedRegion, data, toggle]);
 
   const goToPolygon = (coordinate, setInitialViewState) => {
     setInitialViewState({
@@ -39,38 +66,18 @@ const LayeredMap = ({
     });
   };
 
-  const getRegionName = useCallback(
-    (obj, setFunction, toggle, setInitialViewState) => {
-      if (obj.object) {
-        if (toggle === TOGGLE.CITY) {
-          setFunction(obj.object.properties.kab);
-        } else {
-          setFunction(obj.object.properties.Propinsi);
-        }
-        goToPolygon(
-          obj.object.geometry.type === "MultiPolygon"
-            ? obj.object.geometry.coordinates[0][0][0]
-            : obj.object.geometry.coordinates[0][0],
-          setInitialViewState
-        );
-      }
-    },
-    []
-  );
-
   const layer = [
     new GeoJsonLayer({
       id: "provinces",
       data: data,
       pickable: true,
-      opacity: 0.5,
+      opacity: 0.75,
       stroked: true,
       filled: true,
-      lineWidthScale: 20,
+      lineWidthScale: 200,
       lineWidthMinPixels: 1,
       getRadius: 100,
-      getLineWidth: 1,
-      getElevation: 30,
+      getLineWidth: 100,
       getLineColor: [255, 255, 255],
       lineWidthMaxPixels: 1,
       autoHighlight: true,
@@ -79,8 +86,7 @@ const LayeredMap = ({
         getFillColor: (info) => randomRgba(info, toggleData, heatData),
       },
       onHover: (info) => getGeoJsonProperties(info, setHoverInfo),
-      onClick: (info) =>
-        getRegionName(info, setSelectedRegion, toggle, setInitialViewState),
+      onClick: (info) => getRegionName(info, setSelectedRegion, toggle),
     }),
   ];
   return (
@@ -88,6 +94,15 @@ const LayeredMap = ({
       {hoverInfo.object && (
         <HoverTooltip
           hoverInfo={hoverInfo}
+          heatData={heatData}
+          toggle={toggle}
+          toggleData={toggleData}
+          caseData={caseData}
+        ></HoverTooltip>
+      )}
+      {selectedInfo.object && (
+        <HoverTooltip
+          hoverInfo={selectedInfo}
           heatData={heatData}
           toggle={toggle}
           toggleData={toggleData}

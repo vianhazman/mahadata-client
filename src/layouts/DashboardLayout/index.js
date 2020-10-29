@@ -17,7 +17,7 @@ import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
 
 const DashboardLayout = () => {
-  const [selectedRegion, setSelectedRegion] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("DKI JAKARTA");
   const [toggle, setToggle] = useState(TOGGLE.PROVINCE);
   const [toggleData, setToggleData] = useState(TOGGLE.MOBILITY);
   const [index, setIndex] = useState(0);
@@ -29,6 +29,7 @@ const DashboardLayout = () => {
   const [rankDistrictData, setRankDistrictData] = useState([]);
   const [rankProvinceData, setRankProvinceData] = useState([]);
   const [annotations, setAnnotations] = useState([]);
+  const [loadingState, setLoadingState] = useState("");
 
   const style = {
     position: "fixed",
@@ -49,17 +50,21 @@ const DashboardLayout = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
+        setLoadingState("1/4 Mengunduh Data Mobilitas Kabupaten/Kota");
         const result1 = await axios(`${BASE_PATH}/data/daily/district`);
         setData(result1.data);
         setDistrictData(result1.data);
+        setLoadingState("2/4 Mengunduh Data Mobilitas Provinsi");
         const result2 = await axios(`${BASE_PATH}/data/daily/province`);
         setProvinceData(result2.data);
         const result3 = await axios(`${BASE_PATH}/data/case/province`);
         setProvinceCaseData(result3.data);
+        setLoadingState("3/4 Mengunduh Data Peringkat Mobilitas");
         const rankDistrict = await axios(`${BASE_PATH}/data/rank/district`);
         setRankDistrictData(rankDistrict.data);
         const rankProvince = await axios(`${BASE_PATH}/data/rank/province`);
         setRankProvinceData(rankProvince.data);
+        setLoadingState("4/4 Mengunduh Tanggal PSBB dan Hari Penting");
         const eventData = new EventService();
         const event = await eventData.get(0);
         setAnnotations(event);
@@ -89,6 +94,12 @@ const DashboardLayout = () => {
     <LayoutWrapper>
       <div style={style}>
         <PulseLoader loading={isLoading} />
+      </div>
+      <div style={style}>
+        <br />
+        <br />
+        <br />
+        {isLoading && <h5>{loadingState}</h5>}
       </div>
       <Grid container style={containerStyle}>
         <Grid sm={3} xs={12}>
@@ -139,6 +150,7 @@ const DashboardLayout = () => {
           {!isLoading && (
             <SliderContainer
               selectedRegion={selectedRegion}
+              setSelectedRegion={setSelectedRegion}
               data={data}
               toggle={toggle}
               toggleData={toggleData}

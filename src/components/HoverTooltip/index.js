@@ -11,9 +11,18 @@ const HoverTooltip = ({
   toggleData,
   caseData,
 }) => {
-  let dataExist =
-    heatData.data[hoverInfo.object.properties.kab] !== undefined ||
-    heatData.data[hoverInfo.object.properties.Propinsi] !== undefined;
+  let dataExist;
+  try {
+    dataExist =
+      heatData.data[hoverInfo.object.properties.kab] !== undefined ||
+      heatData.data[hoverInfo.object.properties.Propinsi] !== undefined;
+    if (!dataExist) {
+      console.log(heatData.data[hoverInfo.object.properties.kab]);
+    }
+  } catch (error) {
+    dataExist = false;
+  }
+
   return (
     <Paper
       style={{
@@ -22,15 +31,15 @@ const HoverTooltip = ({
         width: "fit-content",
         pointerEvents: "none",
         padding: "0.5%",
-        left: hoverInfo.x,
-        top: hoverInfo.y,
+        left: hoverInfo.x ? hoverInfo.x : 10,
+        top: hoverInfo.y ? hoverInfo.y : 10,
       }}
     >
       <Box display="flex" justifyContent="space-between" mb={1}>
         <Typography variant="caption">
           <Box fontWeight="bold" mr={2}>
             {toggle === TOGGLE.CITY
-              ? `${hoverInfo.object.properties.KABKOT}, ${hoverInfo.object.properties.PROVINSI}`
+              ? `${hoverInfo.object.properties.kab}, ${hoverInfo.object.properties.provinsi}`
               : hoverInfo.object.properties.Propinsi}
           </Box>
         </Typography>

@@ -8,6 +8,7 @@ import TimeSlider from "../TimeSlider";
 const SliderContainer = ({
   data,
   selectedRegion,
+  setSelectedRegion,
   index,
   setIndex,
   toggle,
@@ -31,6 +32,7 @@ const SliderContainer = ({
             provinceCaseData={provinceCaseData}
             selectedRegion={selectedRegion}
             annotations={annotations}
+            setSelectedRegion={setSelectedRegion}
           ></TimeSeriesChart>
         </Fragment>
       )}

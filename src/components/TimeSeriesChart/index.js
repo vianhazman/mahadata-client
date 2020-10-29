@@ -24,12 +24,18 @@ import EventChartModified from "../EventChartModified/index";
 const TimeSeriesChart = ({
   data,
   selectedRegion,
+  setSelectedRegion,
   toggleData,
   toggle,
   provinceCaseData,
   annotations,
 }) => {
-  const mobility = getChartTimeSeries(data, selectedRegion, toggleData);
+  const mobility = getChartTimeSeries(
+    data,
+    selectedRegion,
+    toggleData,
+    setSelectedRegion
+  );
   const provinceCase =
     toggle === "Provinsi"
       ? getCasesChartTimeSeries(provinceCaseData, selectedRegion)
