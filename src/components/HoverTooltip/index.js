@@ -11,17 +11,9 @@ const HoverTooltip = ({
   toggleData,
   caseData,
 }) => {
-  let dataExist;
-  try {
-    dataExist =
-      heatData.data[hoverInfo.object.properties.kab] !== undefined ||
-      heatData.data[hoverInfo.object.properties.Propinsi] !== undefined;
-    if (!dataExist) {
-      console.log(heatData.data[hoverInfo.object.properties.kab]);
-    }
-  } catch (error) {
-    dataExist = false;
-  }
+  let dataExist =
+    heatData.data[hoverInfo.object.properties.kab] !== undefined ||
+    heatData.data[hoverInfo.object.properties.Propinsi] !== undefined;
 
   return (
     <Paper

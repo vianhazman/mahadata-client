@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components";
 
-import { Paper } from "@material-ui/core";
-
 export const StyledWrapper = styled.div`
   padding: 1% 1% 1% 1%;
   background-color: rgba(255, 255, 255, 0.75);

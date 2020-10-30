@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
 import PauseIcon from "@material-ui/icons/Pause";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import Slider from "@material-ui/core/Slider";

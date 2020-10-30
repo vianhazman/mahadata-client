@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { StyledWrapperRanking, WrapperRanking, WrapperTitle } from "./styled";
+import { StyledWrapperRanking, WrapperRanking } from "./styled";
 
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { TOGGLE } from "../../constants/MapConstants";
 
 const RankingContainer = ({

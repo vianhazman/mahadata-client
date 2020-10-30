@@ -1,5 +1,3 @@
-import { Box, Typography } from "@material-ui/core";
-
 import React from "react";
 import { Wrapper } from "./styled";
 import { format } from "date-fns";

@@ -1,5 +1,4 @@
-import { Box, Paper } from "@material-ui/core";
-
+import { Box } from "@material-ui/core";
 import styled from "styled-components";
 
 export const StyledWrapperRanking = styled.div`

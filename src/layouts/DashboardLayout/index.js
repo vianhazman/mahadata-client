@@ -11,7 +11,6 @@ import PulseLoader from "react-spinners/PulseLoader";
 import RankingContainer from "../../components/RankingContainer";
 import SliderContainer from "../../components/SliderContainer";
 import { TOGGLE } from "../../constants/MapConstants";
-import TimeLegend from "../../components/TimeLegend";
 import axios from "axios";
 import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";

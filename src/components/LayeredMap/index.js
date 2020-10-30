@@ -1,7 +1,7 @@
 import { DeckGL, FlyToInterpolator } from "deck.gl";
 import { MAP_STYLE, MAP_TOKEN, TOGGLE } from "../../constants/MapConstants";
 import React, { useCallback, useEffect, useState } from "react";
-import { getGeoJsonProperties, getSelectedLine, randomRgba } from "./utils";
+import { getGeoJsonProperties, randomRgba } from "./utils";
 
 import { GeoJsonLayer } from "@deck.gl/layers";
 import HoverTooltip from "../HoverTooltip";
@@ -24,15 +24,22 @@ const LayeredMap = ({
   const [selectedInfo, setSelectedInfo] = useState({});
   const [initialViewState, setInitialViewState] = useState(INITIAL_VIEW_STATE);
 
-  const getRegionName = useCallback((obj, setFunction, toggle) => {
-    if (obj.object) {
-      if (toggle === TOGGLE.CITY) {
-        setFunction(obj.object.properties.kab);
-      } else {
-        setFunction(obj.object.properties.Propinsi);
+  const getRegionName = useCallback(
+    (obj, setFunction, toggle) => {
+      if (obj.object) {
+        if (toggle === TOGGLE.CITY) {
+          if (heatData.data[obj.object.properties.kab] !== undefined) {
+            setFunction(obj.object.properties.kab);
+          }
+        } else {
+          if (heatData.data[obj.object.properties.Propinsi] !== undefined) {
+            setFunction(obj.object.properties.Propinsi);
+          }
+        }
       }
-    }
-  }, []);
+    },
+    [heatData]
+  );
 
   useEffect(() => {
     if (!selectedRegion) {
@@ -87,6 +94,30 @@ const LayeredMap = ({
       },
       onHover: (info) => getGeoJsonProperties(info, setHoverInfo),
       onClick: (info) => getRegionName(info, setSelectedRegion, toggle),
+    }),
+    new GeoJsonLayer({
+      id: "selected",
+      data:
+        data[
+          toggle === TOGGLE.PROVINCE
+            ? provincesIndex[selectedRegion]
+            : districtIndex[selectedRegion]
+        ],
+      pickable: true,
+      opacity: 0.75,
+      stroked: true,
+      filled: true,
+      lineWidthScale: 200,
+      lineWidthMinPixels: 1,
+      getRadius: 100,
+      getLineWidth: 100,
+      getLineColor: [0, 0, 0],
+      lineWidthMaxPixels: 1,
+      autoHighlight: true,
+      getFillColor: (info) => randomRgba(info, toggleData, heatData),
+      updateTriggers: {
+        getFillColor: (info) => randomRgba(info, toggleData, heatData),
+      },
     }),
   ];
   return (
