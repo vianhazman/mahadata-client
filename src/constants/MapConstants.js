@@ -18,6 +18,19 @@ export const TOGGLE = {
   MOBILITY: "Mobilitas",
 };
 
+export const RANKING_TITLE = {
+  change: {
+    MAIN: "Perubahan Mobilitas",
+    TOP: "Mobilitas Rendah",
+    BOTTOM: "Mobilitas Tinggi",
+  },
+  ratio: {
+    MAIN: "Kepatuhan Di Rumah Saja",
+    TOP: "Kepatuhan Tinggi",
+    BOTTOM: "Kepatuhan Rendah",
+  },
+};
+
 export const MAP_STYLE = "mapbox://styles/vianhazman/cke27qnxk0nr819qo5js4oxnf";
 export const MAP_TOKEN =
   "pk.eyJ1Ijoidmlhbmhhem1hbiIsImEiOiJ3QnRpLU5RIn0.AChpzipgCTP_vD0LbO7OAg";

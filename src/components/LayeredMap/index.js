@@ -1,12 +1,12 @@
 import { DeckGL, FlyToInterpolator } from "deck.gl";
 import { MAP_STYLE, MAP_TOKEN, TOGGLE } from "../../constants/MapConstants";
+import { NavigationControl, StaticMap } from "react-map-gl";
 import React, { useCallback, useEffect, useState } from "react";
 import { getGeoJsonProperties, randomRgba } from "./utils";
 
 import { GeoJsonLayer } from "@deck.gl/layers";
 import HoverTooltip from "../HoverTooltip";
 import { INITIAL_VIEW_STATE } from "../../constants/MapConstants";
-import { StaticMap } from "react-map-gl";
 import { StyledMapContainer } from "./styled";
 import districtIndex from "../../services/GeoJson/districtIndex";
 import provincesIndex from "../../services/GeoJson/provinceIndex";

@@ -48,10 +48,14 @@ export const WrapperRanking = styled.div`
   ol {
     padding-left: 1rem;
     margin-top: 0.3rem;
+    list-style: none;
   }
   li {
     font-weight: normal;
     font-size: 0.75rem;
     margin: 0.2rem;
+  }
+  ol > li:before {
+    content: attr(seq) ". ";
   }
 `;

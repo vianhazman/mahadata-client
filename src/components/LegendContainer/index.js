@@ -62,7 +62,7 @@ const LegendContainer = ({ toggleData }) => {
   return (
     <StyledWrapper isOpen={isOpen}>
       <WrapperTitle>
-        <h3>Legend</h3>
+        <h3>Legenda</h3>
         {isOpen ? (
           <ExpandMoreIcon onClick={() => setIsOpen(false)} />
         ) : (
