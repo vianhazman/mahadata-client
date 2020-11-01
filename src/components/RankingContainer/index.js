@@ -19,7 +19,7 @@ const RankingContainer = ({
       var ranking = {
         highest:
           toggleData === TOGGLE.MOBILITY
-            ? data[index][type].bottom.reverse()
+            ? data[index][type].bottom
             : data[index][type].top.reverse(),
         lowest:
           toggleData === TOGGLE.MOBILITY
