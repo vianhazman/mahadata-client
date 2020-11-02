@@ -36,7 +36,7 @@ const RankingContainer = ({
         "Loading..."
       ) : (
         <WrapperRanking>
-          <h4>Peringkat {toggleData.TITLE_2}</h4>
+          <h5>Peringkat {toggleData.TITLE_2}</h5>
           <div className="highest">
             <h5>Terbaik ({RANKING_TITLE[type].TOP})</h5>
             <ol>

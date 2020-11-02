@@ -151,7 +151,7 @@ const DashboardLayout = () => {
           )}
         </Grid>
         <Grid xs={12}>
-          <DescriptionContainer></DescriptionContainer>
+          {!isLoading && <DescriptionContainer></DescriptionContainer>}
         </Grid>
       </Grid>
     </LayoutWrapper>

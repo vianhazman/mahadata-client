@@ -29,7 +29,7 @@ export const WrapperLogo = styled.div`
   display: flex;
   align-items: center;
   > * {
-    max-height: 40px;
+    max-height: 30px;
     margin-right: 16px;
   }
 `;
