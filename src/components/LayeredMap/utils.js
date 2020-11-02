@@ -28,13 +28,13 @@ export const randomRgba = (tile, toggleData, heatData) => {
   let dataDate = heatData.data;
   if (dataDate[tile.properties.kab]) {
     let i =
-      toggleData === "Mobilitas"
+      toggleData === TOGGLE.MOBILITY
         ? JSON.parse(dataDate[tile.properties.kab].change_color)
         : JSON.parse(dataDate[tile.properties.kab].ratio_color);
     return i;
   } else if (dataDate[tile.properties.Propinsi]) {
     let i =
-      toggleData === "Mobilitas"
+      toggleData === TOGGLE.MOBILITY
         ? JSON.parse(dataDate[tile.properties.Propinsi].change_color)
         : JSON.parse(dataDate[tile.properties.Propinsi].ratio_color);
     return i;

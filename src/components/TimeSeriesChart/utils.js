@@ -1,6 +1,5 @@
+import { ANNOTATION_TYPE, TOGGLE } from "../../constants/MapConstants";
 import { Index, TimeRange, TimeRangeEvent, TimeSeries } from "pondjs";
-
-import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 
 export const getAnnotationTimeSeries = (
   data,
@@ -34,7 +33,7 @@ export const getChartTimeSeries = (data, selectedRegion, seriesName) => {
     if (keyA > keyB) return 1;
     return 0;
   });
-  if (seriesName === "Mobilitas") {
+  if (seriesName === TOGGLE.MOBILITY) {
     return new TimeSeries({
       name: seriesName,
       columns: ["time", "ratio"],

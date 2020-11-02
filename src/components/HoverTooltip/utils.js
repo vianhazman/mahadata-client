@@ -4,7 +4,7 @@ import React from "react";
 import { TOGGLE } from "../../constants/MapConstants";
 
 export const getChangeCaption = (hoverInfo, heatData, toggle, toggleData) => {
-  const toggleType = toggleData === "Mobilitas" ? "change" : "ratio";
+  const toggleType = toggleData === TOGGLE.MOBILITY ? "change" : "ratio";
   const isDistrict = toggle === TOGGLE.CITY;
   const isProvince = toggle === TOGGLE.PROVINCE;
   const isMobility = toggleData === TOGGLE.MOBILITY;

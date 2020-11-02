@@ -22,7 +22,7 @@ const SliderContainer = ({
       {selectedRegion && (
         <Fragment>
           <h5>
-            Grafik {toggleData} di <b>{selectedRegion}</b>
+            Grafik {toggleData.TITLE_2} di <b>{selectedRegion}</b>
           </h5>
 
           <TimeSeriesChart

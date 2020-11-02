@@ -36,7 +36,7 @@ const RankingContainer = ({
         "Loading..."
       ) : (
         <WrapperRanking>
-          <h4>Peringkat {RANKING_TITLE[type].MAIN}</h4>
+          <h4>Peringkat {toggleData.TITLE_2}</h4>
           <div className="highest">
             <h5>Terbaik ({RANKING_TITLE[type].TOP})</h5>
             <ol>
@@ -59,7 +59,7 @@ const RankingContainer = ({
           </div>
         </WrapperRanking>
       )}
-      <h5 style={{ fontWeight: "normal" }}>
+      <h5 style={{ fontWeight: "normal", fontSize: "11px" }}>
         Data pergerakan diperoleh dari{" "}
         <span style={{ fontWeight: "bold" }}>Facebook Data for Good</span>
       </h5>

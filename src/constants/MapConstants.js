@@ -14,8 +14,16 @@ export const INITIAL_VIEW_STATE = {
 export const TOGGLE = {
   PROVINCE: "Provinsi",
   CITY: "Kota/Kabupaten",
-  RATIO: "Di Rumah Saja",
-  MOBILITY: "Mobilitas",
+  RATIO: {
+    TITLE_1: "Di Rumah Saja",
+    TITLE_2: "Kepatuhan Di Rumah Saja",
+    DESCRIPTION: "Tingkat kepatuhan untuk di rumah saja.",
+  },
+  MOBILITY: {
+    TITLE_1: "Mobilitas",
+    TITLE_2: "Perubahan Mobilitas Relatif",
+    DESCRIPTION: "Mobilitas masyarakat dibandingkan pada bulan Februari.",
+  },
 };
 
 export const RANKING_TITLE = {

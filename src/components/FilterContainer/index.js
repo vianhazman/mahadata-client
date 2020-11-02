@@ -130,7 +130,7 @@ const FilterContainer = ({
           onMouseOut={hoverOut}
           className="button-toggle"
         >
-          {TOGGLE.MOBILITY}
+          {TOGGLE.MOBILITY.TITLE_1}
           {hoverObject.mobility && <HoverToggle type="mobility" />}
         </ToggleButton>
         <ToggleButton
@@ -140,7 +140,7 @@ const FilterContainer = ({
           onMouseOut={hoverOut}
           className="button-toggle"
         >
-          {TOGGLE.RATIO}
+          {TOGGLE.RATIO.TITLE_1}
           {hoverObject.ratio && <HoverToggle type="ratio" />}
         </ToggleButton>
       </ToggleButtonGroup>

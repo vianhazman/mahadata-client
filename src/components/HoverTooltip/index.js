@@ -50,7 +50,7 @@ const HoverTooltip = ({
               {getChangeCaption(hoverInfo, heatData, toggle, toggleData)}
             </Box>
             <Box display="flex" justifyContent="center" alignItems="center">
-              <Typography variant="caption">{toggleData}</Typography>
+              <Typography variant="caption">{toggleData.TITLE_1}</Typography>
             </Box>
           </Box>
           {toggle === TOGGLE.PROVINCE && (

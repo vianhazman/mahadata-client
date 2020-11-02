@@ -5,10 +5,9 @@ import {
   WrapperLegend,
   WrapperTitle,
 } from "./styled";
-import React, { useState } from "react";
 
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import React from "react";
+import { TOGGLE } from "../../constants/MapConstants";
 
 // COLOR_RANGE_CHANGE = {
 //   -pd.np.inf: "[3, 250, 252]",  # BASE
@@ -33,57 +32,48 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //   35: "[34, 86, 82]",  # 26-30
 // }
 const LEGEND_MOBILITY = [
-  { range: "-70%", color: "rgb(26, 70, 143)" },
-  { range: "", color: "rgb(56, 113, 176)" },
+  { range: "-50%", color: "rgb(5, 5, 255)" },
+  { range: "", color: "rgb(75, 75, 255)" },
   { range: "", color: "rgb(3, 150, 252)" },
-  { range: "", color: "rgb(86, 145, 193)" },
-  { range: "", color: "rgb(121, 173, 210)" },
-  { range: "-30%", color: "rgb(167, 201, 222)" },
   { range: "", color: "rgb(202, 218, 237)" },
   { range: "", color: "rgb(240, 243, 254)" },
-  { range: "0%", color: "rgb(250, 231, 209)" },
-  { range: "", color: "rgb(242, 176, 118)" },
-  { range: "di atas 10%", color: "rgb(105, 166, 135)" },
+  { range: "0%", color: "rgb(255, 255, 255)" },
+  { range: "", color: "rgb(255, 135, 135)" },
+  { range: "10%", color: "rgb(255, 15, 15)" },
 ];
 const LEGEND_RATIO = [
-  { range: "0%", color: "rgb(232, 246, 245)" },
-  { range: "", color: "rgb(232, 246, 245)" },
-  { range: "", color: "rgb(194, 222, 220)" },
-  { range: "20%", color: "rgb(162, 204, 200)" },
-  { range: "", color: "rgb(111, 179, 173)" },
-  { range: "", color: "rgb(53, 124, 119)" },
-  { range: "35%", color: "rgb(34, 86, 82)" },
+  { range: "0%", color: "rgb(255, 255, 255)" },
+  { range: "", color: "rgb(215, 215, 255)" },
+  { range: "", color: "rgb(180, 180, 255)" },
+  { range: "", color: "rgb(145, 145, 255)" },
+  { range: "", color: "rgb(110, 110, 255)" },
+  { range: "", color: "rgb(75, 75, 255)" },
+  { range: "", color: "rgb(30, 30, 255)" },
+  { range: "40%", color: "rgb(5, 5, 255)" },
 ];
 
 const LegendContainer = ({ toggleData }) => {
-  const [isOpen, setIsOpen] = useState(false);
   let toggleLegend =
-    toggleData === "Mobilitas" ? LEGEND_MOBILITY : LEGEND_RATIO;
+    toggleData === TOGGLE.MOBILITY ? LEGEND_MOBILITY : LEGEND_RATIO;
   return (
-    <StyledWrapper isOpen={isOpen}>
+    <StyledWrapper>
       <WrapperTitle>
-        <h3>Legenda</h3>
-        {isOpen ? (
-          <ExpandMoreIcon onClick={() => setIsOpen(false)} />
-        ) : (
-          <ExpandLessIcon onClick={() => setIsOpen(true)} />
-        )}
+        <h6>{toggleData.TITLE_2}</h6>
       </WrapperTitle>
-      <WrapperLegend isOpen={isOpen}>
+      <WrapperLegend>
         {toggleLegend.map((el, idx) => (
-          <WrapperBox key={idx}>
+          <WrapperBox key={idx} toggleData={toggleData}>
             <Color color={el.color} />
             <h6>{el.range}</h6>
           </WrapperBox>
         ))}
-        <small>
-          Persentase merepresentasikan perubahan {toggleData.toLowerCase()} pada
-          suatu daerah{" "}
-          {toggleData === "Mobilitas"
-            ? "dibandingkan dengan Bulan Februari"
-            : ""}
-        </small>
       </WrapperLegend>
+      <p>
+        Data ini menunjukan perubahan
+        {toggleData === "Mobilitas"
+          ? " mobilitas penduduk dalam 24 jam dibandingkan pada bulan Februari."
+          : " persentase penduduk yang menetap dalam area 0,6 km^2 dalam 24 jam."}
+      </p>
     </StyledWrapper>
   );
 };

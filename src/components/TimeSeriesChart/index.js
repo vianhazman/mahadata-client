@@ -20,6 +20,7 @@ import {
 
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 import EventChartModified from "../EventChartModified/index";
+import { TOGGLE } from "../../constants/MapConstants";
 
 const TimeSeriesChart = ({
   data,
@@ -147,7 +148,7 @@ const TimeSeriesChart = ({
         <ChartRow height="80">
           <YAxis
             id="mobility"
-            label={toggleData + " (%)"}
+            label={toggleData.TITLE_1 + " (%)"}
             min={mobility.min("ratio")}
             max={mobility.max("ratio")}
             type="linear"
@@ -157,10 +158,10 @@ const TimeSeriesChart = ({
               axis="mobility"
               style={baselineStyle}
               value={0}
-              label={`${toggleData} Februari 2020`}
+              label={`${toggleData.TITLE_1} Februari 2020`}
               position="right"
             />
-            {toggleData === "Mobilitas" ? (
+            {toggleData === TOGGLE.MOBILITY ? (
               <LineChart
                 axis="mobility"
                 columns={["ratio"]}
@@ -181,7 +182,7 @@ const TimeSeriesChart = ({
               axis="mobility"
               event={tracker.event}
               infoTimeFormat="%d-%m-%Y"
-              info={[{ label: toggleData, value: `${tracker.value}%` }]}
+              info={[{ label: toggleData.TITLE_1, value: `${tracker.value}%` }]}
               column="ratio"
               markerLabelAlign="left"
               markerRadius={3}

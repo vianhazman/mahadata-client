@@ -1,5 +1,6 @@
 import { Box, Paper } from "@material-ui/core";
 
+import { TOGGLE } from "../../constants/MapConstants";
 import styled from "styled-components";
 
 export const StyledWrapper = styled(Paper)`
@@ -10,64 +11,38 @@ export const StyledWrapper = styled(Paper)`
   padding: 1% 1% 1% 1%;
   margin: 2% 2% 2% 2%;
   width: 200px;
-  background-color: rgba(255, 255, 255, 0.75);
-  ${({ isOpen }) =>
-    isOpen &&
-    `
-animation: show 0.3s linear;
-animation-fill-mode: forwards;
-@keyframes show {
-  0%   {height: 25px;}
- 
-  100% {height: 220px;}
-}`}
-  ${({ isOpen }) => !isOpen && "height:25px;"};
+  background-color: rgba(255, 255, 255, 0.5);
+  p {
+    font-size: 10px;
+    margin-bottom: 0;
+  }
 `;
 
 export const WrapperBox = styled(Box)`
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  width: auto;
-  height: 10px;
+  width: ${({ toggleData }) =>
+    (toggleData === TOGGLE.MOBILITY && "50vh") ||
+    (toggleData === TOGGLE.RATIO && "60vh")};
   h6 {
-    margin: 0;
-    margin-left: 0.5rem;
+    height: 30%;
+    margin: 0 10% 0 0;
   }
   // margin-bottom: 0.5rem;
 `;
 export const Color = styled(Box)`
   background-color: ${({ color }) => color};
-  height: 100%;
-  width: 10%;
+  height: 70%;
+  width: 100%;
 `;
-export const WrapperTitle = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  h3 {
+export const WrapperTitle = styled.div`
+  h6 {
     margin: 0;
-  }
-  margin-bottom: 1rem;
-  svg {
-    &:hover {
-      cursor: pointer;
-    }
+    margin-bottom: 2%;
   }
 `;
 export const WrapperLegend = styled.div`
-  ${({ isOpen }) =>
-    isOpen &&
-    `
-  animation: block 1s;
-  animation-fill-mode: forwards;
-  @keyframes block {
-    0%   {opacity: 0;}
-   
-    100% {opacity: 1;}
-  }
-
-
-  `}
-  ${({ isOpen }) => !isOpen && "opacity:0"};
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 1%;
 `;
