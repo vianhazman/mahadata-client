@@ -7,12 +7,12 @@ import {
 } from "./styled";
 
 import HoverToggle from "../HoverToggle";
-import LogoImeri from "../../assets/img/logo-imeri.webp";
-import LogoInovasiId from "../../assets/img/logo-inovasi-id.webp";
-import LogoLpdp from "../../assets/img/logo-lpdp.webp";
-import LogoRistekBrin from "../../assets/img/logo-ristek-brin.webp";
-import LogoTim from "../../assets/img/logo-tim-mahadata.webp";
-import LogoUi from "../../assets/img/logo-ui.webp";
+import LogoImeri from "../../assets/img/logo-imeri.png";
+import LogoInovasiId from "../../assets/img/logo-inovasi-id.png";
+import LogoLpdp from "../../assets/img/logo-lpdp.png";
+import LogoRistekBrin from "../../assets/img/logo-ristek-brin.png";
+import LogoTim from "../../assets/img/logo-tim-mahadata.png";
+import LogoUi from "../../assets/img/logo-ui.png";
 import RegionFilter from "../../components/RegionFilter";
 import { TOGGLE } from "../../constants/MapConstants";
 import ToggleButton from "@material-ui/lab/ToggleButton";

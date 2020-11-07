@@ -3,7 +3,7 @@ import { TextWrapper } from "./styled";
 const DescriptionContainer = () => {
   return (
     <TextWrapper>
-      <h3>Tentang Peta Pergerakan Masyarakat dan Kasus COVID-19 Indonesia</h3>
+      <h3>Tentang Peta Mobilitas Masyarakat dan Kasus COVID-19 Indonesia</h3>
       <p>
         Peta ini mendapatkan pendanaan dari Konsorsium Riset dan Inovasi
         COVID-19 Tahap 2 Kemenristek/BRIN dengan judul proposal “Evaluasi
@@ -16,7 +16,7 @@ const DescriptionContainer = () => {
       </p>
       <h5>Tujuan</h5>
       <p>
-        Peta ini bertujuan untuk menilai indeks pergerakan masyarakat baik serta
+        Peta ini bertujuan untuk menilai indeks mobilitas masyarakat baik serta
         penambahan kasus harian COVID-19 di daerah yang memberlakukan PSBB
         maupun tidak serta melakukan pemetaan geospasial secara semi real-time.
       </p>
@@ -25,7 +25,7 @@ const DescriptionContainer = () => {
         <ul>
           <li>
             Menjadi masukan untuk pemerintah pusat maupun daerah dalam membuat
-            kebijakan terkait PSBB dan pengendalian pergerakan masyarakat
+            kebijakan terkait PSBB dan pengendalian mobilitas masyarakat
           </li>
           <li>
             Menjadi sumber data dalam mengevaluasi strategi physical distancing
@@ -33,7 +33,7 @@ const DescriptionContainer = () => {
           </li>
         </ul>
       </p>
-      <h5>Jenis Data Pergerakan</h5>
+      <h5>Jenis Data</h5>
       <p>
         <ol>
           <li>
@@ -50,7 +50,7 @@ const DescriptionContainer = () => {
             dalam satu hari.
           </li>
         </ol>
-        Data pergerakan diperoleh dari{" "}
+        Data mobilitas diperoleh dari{" "}
         <a href="https://dataforgood.fb.com/">Facebook Data for Good.</a>
       </p>
       <h5>Tingkat Agregasi</h5>
@@ -58,21 +58,21 @@ const DescriptionContainer = () => {
         <ol>
           <li>
             <b>Kota/Kabupaten</b> <br></br> Pada tingkai kota/kabupaten dapat
-            dilihat data pergerakan yang didapatkan dari{" "}
+            dilihat data mobilitas yang didapatkan dari{" "}
             <a href="https://dataforgood.fb.com/">Facebook Data for Good.</a>.
           </li>
           <li>
             <b>Provinsi</b> <br></br>Pada tingkat agregasi provinsi dapat
-            dilihat penambahan kasus harian COVID-19 dan data pergerakan. Data
-            pergerakan pada tingkat provinsi didapatkan dengan menghitung nilai
-            rerata pergerakan kota/kabupaten. Data penambahan kasus harian
+            dilihat penambahan kasus harian COVID-19 dan data mobilitas. Data
+            mobilitas pada tingkat provinsi didapatkan dengan menghitung nilai
+            rerata mobilitas kota/kabupaten. Data penambahan kasus harian
             diambil dari KawalCovid.
           </li>
         </ol>
       </p>
       <h5>Privasi</h5>
       <p>
-        Data pergerakan{" "}
+        Data mobilitas{" "}
         <a href="https://dataforgood.fb.com/">Facebook Data for Good.</a>{" "}
         didapatkan dari pengguna aplikasi Facebook yang memberikan consent untuk
         dicatat riwayat lokasinya. Data ini kemudian diagregasi secara anonimus
