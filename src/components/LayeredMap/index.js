@@ -1,6 +1,6 @@
 import { DeckGL, FlyToInterpolator } from "deck.gl";
 import { MAP_STYLE, MAP_TOKEN, TOGGLE } from "../../constants/MapConstants";
-import { NavigationControl, StaticMap } from "react-map-gl";
+import { StaticMap } from "react-map-gl";
 import React, { useCallback, useEffect, useState } from "react";
 import { getGeoJsonProperties, randomRgba } from "./utils";
 

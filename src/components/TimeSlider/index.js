@@ -52,6 +52,7 @@ const TimeSlider = ({ data, index, setIndex, toggle }) => {
           <PlayArrowIcon></PlayArrowIcon>
         )}
       </Button>
+
       <Slider
         className="slider"
         aria-labelledby="label"
