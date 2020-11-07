@@ -101,7 +101,7 @@ const DescriptionContainer = () => {
       </p>
       <h5>Tim Pengembang</h5>
       <p>
-        Favian Kharisma Hazman, Muhammad Istiady Kartadibrata, Ray Azrin Karim,
+        Favian Kharisma Hazman, Muhamad Istiady Kartadibrata, Ray Azrin Karim,
         Adila Krisnadhi (FASILKOM UI), Satria Indratmoko, Ardiansyah, Jarot
         Mulyo Semedi (FMIPA UI), Iwan Ariawan (FKM UI), Arya Ananda Lukmana, Aly
         Lamuri, Diashati Mardiasmo, Arierta Pujitresnani, Anindya Pradipta
