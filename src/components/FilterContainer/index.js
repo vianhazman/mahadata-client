@@ -74,14 +74,14 @@ const FilterContainer = ({
       </WrapperLogo>
       <WrapperHeader>
         <WrapperTitle>
-          <h3>Peta Pergerakan Masyarakat dan Kasus COVID-19 Indonesia</h3>
+          <h3>Peta Mobilitas Masyarakat dan Kasus COVID-19 Indonesia</h3>
           <h5>Tim Sinergi Mahadata UI Tanggap COVID-19</h5>
         </WrapperTitle>
         <img className="logo-tim" src={LogoTim} alt="Logo Tim Mahadata"></img>
       </WrapperHeader>
       <div>
         <p>
-          Peta menampilkan pergerakan masyarakat Indonesia di tingkat
+          Peta menampilkan mobilitas masyarakat Indonesia di tingkat
           kabupaten/kota dan provinsi serta penambahan harian kasus COVID-19 di
           tingkat provinsi.
         </p>
@@ -122,11 +122,11 @@ const FilterContainer = ({
         data={data}
       ></RegionFilter>
       <p>
-        Pergerakan dapat dilihat berupa (1) mobilitas masyarakat dibandingkan
-        pada bulan Februari, dan (2) persentase penduduk yang patuh untuk di
-        rumah saja.
+        Data yang dapat dilihat berupa (1) perubahan mobilitas masyarakat
+        dibandingkan pada bulan Februari, dan (2) persentase penduduk yang patuh
+        untuk di rumah saja.
       </p>
-      <h5>Pilih jenis data pergerakan</h5>
+      <h5>Pilih jenis data</h5>
       <ToggleButtonGroup
         value={toggleData}
         size="small"

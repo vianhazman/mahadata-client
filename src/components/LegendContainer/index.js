@@ -70,7 +70,7 @@ const LegendContainer = ({ toggleData }) => {
       </WrapperLegend>
       <p>
         Data ini menunjukan perubahan
-        {toggleData === "Mobilitas"
+        {toggleLegend === LEGEND_MOBILITY
           ? " mobilitas penduduk dalam 24 jam dibandingkan pada bulan Februari."
           : " persentase penduduk yang menetap dalam area 0,6 km^2 dalam 24 jam."}
       </p>

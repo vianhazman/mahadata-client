@@ -60,8 +60,11 @@ const RankingContainer = ({
         </WrapperRanking>
       )}
       <h5 style={{ fontWeight: "normal", fontSize: "11px" }}>
-        Data pergerakan diperoleh dari{" "}
-        <span style={{ fontWeight: "bold" }}>Facebook Data for Good</span>
+        Data mobilitas diperoleh dari{" "}
+        <span style={{ fontWeight: "bold" }}>
+          {" "}
+          <a href="https://dataforgood.fb.com/">Facebook Data for Good.</a>
+        </span>
       </h5>
     </StyledWrapperRanking>
   );

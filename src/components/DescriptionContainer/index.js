@@ -50,31 +50,35 @@ const DescriptionContainer = () => {
             dalam satu hari.
           </li>
         </ol>
-        Data pergerakan diperoleh dari Facebook Data for Good.
+        Data pergerakan diperoleh dari{" "}
+        <a href="https://dataforgood.fb.com/">Facebook Data for Good.</a>
       </p>
       <h5>Tingkat Agregasi</h5>
       <p>
         <ol>
           <li>
             <b>Kota/Kabupaten</b> <br></br> Pada tingkai kota/kabupaten dapat
-            dilihat data pergerakan yang didapatkan dari Facebook Data for Good.
+            dilihat data pergerakan yang didapatkan dari{" "}
+            <a href="https://dataforgood.fb.com/">Facebook Data for Good.</a>.
           </li>
           <li>
             <b>Provinsi</b> <br></br>Pada tingkat agregasi provinsi dapat
             dilihat penambahan kasus harian COVID-19 dan data pergerakan. Data
             pergerakan pada tingkat provinsi didapatkan dengan menghitung nilai
-            rerata pergerakan kota/kabupaten.
+            rerata pergerakan kota/kabupaten. Data penambahan kasus harian
+            diambil dari KawalCovid.
           </li>
         </ol>
       </p>
       <h5>Privasi</h5>
       <p>
-        Data pergerakan Facebook Data for Good didapatkan dari pengguna aplikasi
-        Facebook yang memberikan consent untuk dicatat riwayat lokasinya. Data
-        ini kemudian diagregasi secara anonimus sehingga individu yang membagi
-        datanya tidak bisa ditelusuri. Selain itu pada data yang diagregasi juga
-        dilakukan spatial smoothing dan penambahan random noise, untuk menjaga
-        kerahasiaan data.
+        Data pergerakan{" "}
+        <a href="https://dataforgood.fb.com/">Facebook Data for Good.</a>{" "}
+        didapatkan dari pengguna aplikasi Facebook yang memberikan consent untuk
+        dicatat riwayat lokasinya. Data ini kemudian diagregasi secara anonimus
+        sehingga individu yang membagi datanya tidak bisa ditelusuri. Selain itu
+        pada data yang diagregasi juga dilakukan spatial smoothing dan
+        penambahan random noise, untuk menjaga kerahasiaan data.
       </p>
       <h5>Pemberlakuan PSBB</h5>
       <p>
@@ -94,6 +98,15 @@ const DescriptionContainer = () => {
             Banjar, Barito Kuala, Kampar, Pelalawan, Siak, Bengkalis.
           </li>
         </ul>
+      </p>
+      <h5>Tim Pengembang</h5>
+      <p>
+        Favian Kharisma Hazman, Muhammad Istiady Kartadibrata, Ray Azrin Karim,
+        Adila Krisnadhi (FASILKOM UI), Satria Indratmoko, Ardiansyah, Jarot
+        Mulyo Semedi (FMIPA UI), Iwan Ariawan (FKM UI), Arya Ananda Lukmana, Aly
+        Lamuri, Diashati Mardiasmo, Arierta Pujitresnani, Anindya Pradipta
+        Susanto, Prasandhya Astagiri Yusuf, Damar Susilaradeya, Budi Wiweko (FK
+        UI)
       </p>
     </TextWrapper>
   );
