@@ -42,13 +42,11 @@ const SliderContainer = ({
         setIndex={setIndex}
         toggle={toggle}
       ></TimeSlider>
-      {!selectedRegion && (
-        <h5 style={{ fontWeight: "normal", paddingLeft: "5rem", margin: "0" }}>
-          Geser <span style={{ fontStyle: "italic" }}>slider</span> di atas
-          untuk memilih tanggal atau tekan tombol &nbsp;
-          <span style={{ fontStyle: "italic" }}>play</span> berwarna merah
-        </h5>
-      )}
+      <h6 style={{ fontWeight: "normal", paddingLeft: "5rem", margin: "0" }}>
+        Geser <span style={{ fontStyle: "italic" }}>slider</span> di atas untuk
+        memilih tanggal atau tekan tombol &nbsp;
+        <span style={{ fontStyle: "italic" }}>play</span> berwarna merah
+      </h6>
     </StyledWrapper>
   );
 };
