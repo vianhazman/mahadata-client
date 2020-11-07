@@ -17,7 +17,7 @@ import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
 
 const DashboardLayout = () => {
-  const [selectedRegion, setSelectedRegion] = useState("DKI JAKARTA");
+  const [selectedRegion, setSelectedRegion] = useState("");
   const [toggle, setToggle] = useState(TOGGLE.PROVINCE);
   const [toggleData, setToggleData] = useState(TOGGLE.MOBILITY);
   const [index, setIndex] = useState(0);

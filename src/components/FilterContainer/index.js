@@ -119,7 +119,7 @@ const FilterContainer = ({
       <RegionFilter
         selectedRegion={selectedRegion}
         setSelectedRegion={setSelectedRegion}
-        data={data}
+        data={data.sort()}
       ></RegionFilter>
       <p>
         Data yang dapat dilihat berupa (1) perubahan mobilitas masyarakat
