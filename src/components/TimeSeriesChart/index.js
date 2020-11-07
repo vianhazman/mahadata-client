@@ -128,7 +128,6 @@ const TimeSeriesChart = ({
                 series={provinceCase}
                 onMouseNear={(p) => this.handleMouseNear(p)}
               />
-
               <EventMarker
                 type="flag"
                 axis="case"
@@ -138,6 +137,19 @@ const TimeSeriesChart = ({
                 column="case"
                 markerLabelAlign="left"
                 markerRadius={3}
+                infoStyle={{
+                  box: {
+                    fill: "white",
+                    stroke: "#999",
+                    pointerEvents: "none",
+                    opacity: 1,
+                    color: "black",
+                  },
+                  label: {
+                    fill: "unset",
+                  },
+                }}
+                infoWidth={120}
               />
             </Charts>
           </ChartRow>
@@ -176,7 +188,6 @@ const TimeSeriesChart = ({
                 onMouseNear={(p) => this.handleMouseNear(p)}
               />
             )}
-
             <EventMarker
               type="flag"
               axis="mobility"
@@ -186,6 +197,19 @@ const TimeSeriesChart = ({
               column="ratio"
               markerLabelAlign="left"
               markerRadius={3}
+              infoStyle={{
+                box: {
+                  fill: "white",
+                  stroke: "#999",
+                  pointerEvents: "none",
+                  opacity: 1,
+                  color: "black",
+                },
+                label: {
+                  fill: "unset",
+                },
+              }}
+              infoWidth={120}
             />
           </Charts>
         </ChartRow>
