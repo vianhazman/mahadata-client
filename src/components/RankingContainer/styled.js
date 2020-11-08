@@ -7,7 +7,7 @@ export const StyledWrapperRanking = styled.div`
   padding: 1% 1% 1% 1%;
   margin: 2% 2% 2% 2%;
   background-color: rgba(255, 255, 255, 0.75);
-  height: 25px;
+  // height: 25px;
 `;
 
 export const WrapperBox = styled(Box)`

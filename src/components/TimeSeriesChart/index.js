@@ -4,7 +4,6 @@ import {
   ChartContainer,
   ChartRow,
   Charts,
-  EventMarker,
   LineChart,
   Resizable,
   YAxis,
@@ -17,7 +16,7 @@ import {
   getCasesChartTimeSeries,
   getChartTimeSeries,
 } from "./utils";
-
+import EventMarkerModified from "../EventMarkerModified";
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
 import EventChartModified from "../EventChartModified/index";
 import { TOGGLE } from "../../constants/MapConstants";
@@ -128,7 +127,7 @@ const TimeSeriesChart = ({
                 series={provinceCase}
                 onMouseNear={(p) => this.handleMouseNear(p)}
               />
-              <EventMarker
+              <EventMarkerModified
                 type="flag"
                 axis="case"
                 event={caseTracker.event}
@@ -188,7 +187,7 @@ const TimeSeriesChart = ({
                 onMouseNear={(p) => this.handleMouseNear(p)}
               />
             )}
-            <EventMarker
+            <EventMarkerModified
               type="flag"
               axis="mobility"
               event={tracker.event}

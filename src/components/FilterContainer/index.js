@@ -77,7 +77,9 @@ const FilterContainer = ({
           <h3>Peta Mobilitas Masyarakat dan Kasus COVID-19 Indonesia</h3>
           <h5>Tim Sinergi Mahadata UI Tanggap COVID-19</h5>
         </WrapperTitle>
-        <img className="logo-tim" src={LogoTim} alt="Logo Tim Mahadata"></img>
+        <a href="https://sinergimahadata.ui.ac.id">
+          <img className="logo-tim" src={LogoTim} alt="Logo Tim Mahadata"></img>
+        </a>
       </WrapperHeader>
       <div>
         <p>
