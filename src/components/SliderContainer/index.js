@@ -4,6 +4,7 @@ import { StyledWrapper } from "./styled";
 import TimeLegend from "../../components/TimeLegend";
 import TimeSeriesChart from "../TimeSeriesChart";
 import TimeSlider from "../TimeSlider";
+import { Box } from "@material-ui/core";
 
 const SliderContainer = ({
   data,
@@ -18,12 +19,20 @@ const SliderContainer = ({
 }) => {
   return (
     <StyledWrapper isOpen={selectedRegion}>
-      <TimeLegend date={data[index]?.date ?? ""} toggleData={toggleData} />
+      {!selectedRegion && (
+        <TimeLegend date={data[index]?.date ?? ""} toggleData={toggleData} />
+      )}
       {selectedRegion && (
         <Fragment>
-          <h5>
-            Grafik {toggleData.TITLE_2} di <b>{selectedRegion}</b>
-          </h5>
+          <Box className="title">
+            <h5>
+              Grafik {toggleData.TITLE_2} di <b>{selectedRegion}</b>
+            </h5>
+            <TimeLegend
+              date={data[index]?.date ?? ""}
+              toggleData={toggleData}
+            />
+          </Box>
 
           <TimeSeriesChart
             toggleData={toggleData}

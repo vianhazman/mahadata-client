@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   background-color: white;
-  position: absolute;
-  right: 2%;
   background-color: rgba(255, 255, 255, 0.75);
+  @media only screen and (max-width: 720px) {
+    h5 {
+      margin: 0;
+    }
+  }
 `;

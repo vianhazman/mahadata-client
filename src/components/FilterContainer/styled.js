@@ -28,6 +28,8 @@ export const StyledWrapper = styled.div`
 export const WrapperLogo = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   > * {
     max-height: 30px;
     margin-right: 16px;
