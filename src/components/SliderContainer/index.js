@@ -42,6 +42,7 @@ const SliderContainer = ({
             selectedRegion={selectedRegion}
             annotations={annotations}
             setSelectedRegion={setSelectedRegion}
+            index={index}
           ></TimeSeriesChart>
         </Fragment>
       )}
@@ -51,7 +52,7 @@ const SliderContainer = ({
         setIndex={setIndex}
         toggle={toggle}
       ></TimeSlider>
-      <h6 style={{ fontWeight: "normal", paddingLeft: "5rem", margin: "0" }}>
+      <h6 style={{ fontWeight: "normal", paddingLeft: "8rem", margin: "0" }}>
         Geser <span style={{ fontStyle: "italic" }}>slider</span> di atas untuk
         memilih tanggal atau tekan tombol &nbsp;
         <span style={{ fontStyle: "italic" }}>play</span> berwarna merah

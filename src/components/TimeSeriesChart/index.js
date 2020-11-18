@@ -6,7 +6,10 @@ import {
   Charts,
   LineChart,
   Resizable,
+  LabelAxis,
   YAxis,
+  TimeMarker,
+  TimeRangeMarker,
 } from "react-timeseries-charts";
 import React, { useState } from "react";
 import {
@@ -15,6 +18,12 @@ import {
   getAnnotationTimeSeries,
   getCasesChartTimeSeries,
   getChartTimeSeries,
+  getTimeRange,
+  labelStyle,
+  yAxisStyle,
+  timeAxisStyle,
+  markerStyle,
+  timeRangeMarkerStyle,
 } from "./utils";
 import EventMarkerModified from "../EventMarkerModified";
 import { ANNOTATION_TYPE } from "../../constants/MapConstants";
@@ -29,6 +38,7 @@ const TimeSeriesChart = ({
   toggle,
   provinceCaseData,
   annotations,
+  index,
 }) => {
   const mobility = getChartTimeSeries(
     data,
@@ -83,11 +93,11 @@ const TimeSeriesChart = ({
     <Resizable>
       <ChartContainer
         timeRange={mobility.range()}
-        // timeAxisTickCount={mobility.count()}
         onTrackerChanged={handleTrackerChanged}
         showGrid={true}
         showGridPosition="under"
-        style={{ position: "absolute" }}
+        style={{ position: "absolute", yAxisStyle }}
+        timeAxisStyle={timeAxisStyle}
       >
         <ChartRow height="25">
           <Charts>
@@ -101,6 +111,17 @@ const TimeSeriesChart = ({
           </Charts>
         </ChartRow>
         <ChartRow height="25">
+          <LabelAxis
+            id="event"
+            label="Tanggal Penting"
+            values={[]}
+            min={0}
+            max={1}
+            width={130}
+            type="linear"
+            style={labelStyle}
+            hideScale
+          />
           <Charts>
             <EventChartModified
               series={eventAnnotation}
@@ -115,12 +136,20 @@ const TimeSeriesChart = ({
             <YAxis
               id="case"
               label={"Kasus Harian"}
-              // format=".2f"
               min={provinceCase.min("case")}
               max={provinceCase.max("case")}
               type="linear"
+              style={yAxisStyle}
             />
             <Charts>
+              <TimeMarker
+                time={Date.parse(data[index].date)}
+                infoStyle={markerStyle}
+              ></TimeMarker>
+              <TimeRangeMarker
+                timerange={getTimeRange(data, index)}
+                style={timeRangeMarkerStyle}
+              ></TimeRangeMarker>
               <BarChart
                 axis="case"
                 columns={["case"]}
@@ -163,14 +192,24 @@ const TimeSeriesChart = ({
             min={mobility.min("ratio")}
             max={mobility.max("ratio")}
             type="linear"
+            style={yAxisStyle}
           />
           <Charts>
+            <TimeMarker
+              time={Date.parse(data[index].date)}
+              infoStyle={markerStyle}
+            ></TimeMarker>
+            <TimeRangeMarker
+              timerange={getTimeRange(data, index)}
+              style={timeRangeMarkerStyle}
+            ></TimeRangeMarker>
             <Baseline
               axis="mobility"
               style={baselineStyle}
               value={0}
               label={`${toggleData.TITLE_1} Februari 2020`}
               position="right"
+              vposition="above"
             />
             {toggleData === TOGGLE.MOBILITY ? (
               <LineChart

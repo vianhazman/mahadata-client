@@ -1,5 +1,6 @@
 import { ANNOTATION_TYPE, TOGGLE } from "../../constants/MapConstants";
 import { Index, TimeRange, TimeRangeEvent, TimeSeries } from "pondjs";
+import moment from "moment";
 
 export const getAnnotationTimeSeries = (
   data,
@@ -82,11 +83,18 @@ export const getAnnotationColor = (event, state) => {
   };
 };
 
+export const getTimeRange = (data, index) => {
+  return new TimeRange(
+    moment(data[0].date, "YYYY-MM-DD"),
+    moment(data[index].date, "YYYY-MM-DD")
+  );
+};
+
 export const yAxisStyle = {
   line: {
     stroke: "rgb(0, 0, 0)",
     strokeWidth: 1,
-    opacity: 0.6,
+    opacity: 1,
     strokeDasharray: "none",
   },
   label: {
@@ -94,6 +102,8 @@ export const yAxisStyle = {
     opacity: 1,
     fontWeight: "bold",
   },
+  ticks: { fill: "none", stroke: "rgb(0, 0, 0)" },
+  values: { fill: "rgb(0, 0, 0)" },
 };
 
 export const baselineStyle = {
@@ -105,7 +115,42 @@ export const baselineStyle = {
   },
   label: {
     fill: "rgb(0, 0, 0)",
-    opacity: 1,
+    opacity: 0.5,
     fontWeight: "bold",
   },
 };
+
+export const labelStyle = {
+  label: {
+    fontSize: 10,
+    textAnchor: "right",
+    fill: "#000000",
+    paddingRight: "20px",
+    left: 0,
+  },
+};
+
+export const chartContainerStyle = {
+  position: "absolute",
+  yAxisStyle,
+};
+
+export const timeAxisStyle = {
+  label: {
+    fill: "rgb(0, 0, 0)",
+    opacity: 1,
+    fontWeight: "bold",
+  },
+  values: { fill: "rgb(0, 0, 0)" },
+};
+
+export const markerStyle = {
+  line: {
+    stroke: "#2a3eb1",
+    strokeWidth: "2px",
+    cursor: "crosshair",
+    pointerEvents: "none",
+  },
+};
+
+export const timeRangeMarkerStyle = { fill: "rgba(200, 200, 200, 0.25)" };
