@@ -4,12 +4,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Environment Variables
 
-Please create an `.env` file with this structure:
+Please create an `.env` file with thie structure in `example.env` file:
 
-```
-REACT_APP_PROD_API_URL=http://production-backend:5000
-REACT_APP_DEV_API_URL=http://localhost:5000
-```
+#### Api endpoint credentials
+
+- `REACT_APP_PROD_API_URL`
+- `REACT_APP_DEV_API_URL`
+
+#### Event Google Sheets
+
+- `REACT_APP_GOOGLE_SERVICE_PRIVATE_KEY`
+- `REACT_APP_GOOGLE_CLIENT_EMAIL`
+- `REACT_APP_SPREADSHEET_ID`
 
 ## Deployment to remote Nginx server
 
@@ -19,6 +25,12 @@ REACT_APP_DEV_API_URL=http://localhost:5000
 REMOTE_CONNECTION=user@mahadata-production
 REMOTE_PASSWORD=userpassword
 ```
+
+## Critical Libraries Used
+
+- deck.gl
+- software.es.net/react-timeseries-charts
+- material-ui.com
 
 ## Available Scripts
 
