@@ -17,7 +17,7 @@ import districtGeo from "../../services/GeoJson/district";
 import provincesGeo from "../../services/GeoJson/provinces";
 
 const DashboardLayout = () => {
-  const [selectedRegion, setSelectedRegion] = useState("");
+  const [selectedRegion, _setSelectedRegion] = useState("");
   const [toggle, setToggle] = useState(TOGGLE.PROVINCE);
   const [toggleData, setToggleData] = useState(TOGGLE.MOBILITY);
   const [index, setIndex] = useState(0);
@@ -40,6 +40,14 @@ const DashboardLayout = () => {
   const containerStyle = {
     maxHeight: "30%",
   };
+
+  const setSelectedRegion = (region) => {
+    if (!data[0].data[region] && region !== "" && region) {
+      alert("Mohon maaf, data untuk wilayah "+region+" belum tersedia.")
+    } else {
+      _setSelectedRegion(region);
+    }
+  }
 
   const resetSelected = () => {
     setSelectedRegion("");
@@ -85,6 +93,7 @@ const DashboardLayout = () => {
         break;
     }
   }, [toggle, districtData, provinceData]);
+
   return (
     <LayoutWrapper>
       <div style={style}>
